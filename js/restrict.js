@@ -8,7 +8,7 @@ xhttp.send();
 
 //alert(xhttp.responseText);
 if(xhttp.responseText == "")
-  window.location.href = "http://localhost/Pharmacy-Management/index.html";
+  window.location.href = "http://localhost/medical-claim/index.html";
 
 if(xhttp.responseText == "false")
-  window.location.href = "http://localhost/Pharmacy-Management/login.php";
+  window.location.href = "http://localhost/medical-claim/login.php";

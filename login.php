@@ -20,11 +20,11 @@
       xhttp.open("GET", "php/db_connection.php?action=is_logged_in", false);
       xhttp.send();
 
-      //alert(xhttp.responseText);
+      // alert(xhttp.responseText);
       if(xhttp.responseText == "")
-        window.location.href = "http://localhost/Pharmacy-Management/index.html";
+        window.location.href = "http://localhost/medical-clame/index.php";
       if(xhttp.responseText == "true")
-        window.location.href = "http://localhost/Pharmacy-Management/home.php";
+        window.location.href = "http://localhost/medical-clame/home.php";
 
     </script>
   </head>

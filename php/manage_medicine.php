@@ -52,9 +52,9 @@
     <tr>
       <td><?php echo $seq_no; ?></td>
       <td><?php echo $row['NAME']; ?></td>
-      <td><?php echo $row['PACKING']; ?></td>
+      <!-- <td><?php echo $row['PACKING']; ?></td> -->
       <td><?php echo $row['GENERIC_NAME']; ?></td>
-      <td><?php echo $row['SUPPLIER_NAME']; ?></td>
+      <!-- <td><?php echo $row['SUPPLIER_NAME']; ?></td> -->
       <td>
         <button href="" class="btn btn-info btn-sm" onclick="editMedicine(<?php echo $row['ID']; ?>);">
           <i class="fa fa-pencil"></i>
@@ -75,18 +75,18 @@ function showEditOptionsRow($seq_no, $row) {
       <input type="text" class="form-control" value="<?php echo $row['NAME']; ?>" placeholder="Medicine Name" id="medicine_name" onblur="notNull(this.value, 'medicine_name_error');">
       <code class="text-danger small font-weight-bold float-right" id="medicine_name_error" style="display: none;"></code>
     </td>
-    <td>
+    <!-- <td>
       <input type="text" class="form-control" value="<?php echo $row['PACKING']; ?>" placeholder="Packing" id="packing" onblur="notNull(this.value, 'pack_error');">
       <code class="text-danger small font-weight-bold float-right" id="pack_error" style="display: none;"></code>
-    </td>
+    </td> -->
     <td>
       <input type="text" class="form-control" value="<?php echo $row['GENERIC_NAME']; ?>" placeholder="Generic Name" id="generic_name" onblur="notNull(this.value, 'generic_name_error');">
       <code class="text-danger small font-weight-bold float-right" id="generic_name_error" style="display: none;"></code>
     </td>
-    <td>
+    <!-- <td>
       <input type="text" class="form-control" value="<?php echo $row['SUPPLIER_NAME']; ?>" placeholder="Supplier Name" id="suppliers_name" onblur="notNull(this.value, 'supplier_name_error');">
       <code class="text-danger small font-weight-bold float-right" id="supplier_name_error" style="display: none;"></code>
-    </td>
+    </td> -->
     <td>
       <button href="" class="btn btn-success btn-sm" onclick="updateMedicine(<?php echo $row['ID']; ?>);">
         <i class="fa fa-edit"></i>

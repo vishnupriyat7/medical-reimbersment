@@ -160,16 +160,40 @@ function addSupplier() {
   }
 }
 
+// function addMedicine() {
+//   document.getElementById("medicine_acknowledgement").innerHTML = "";
+//   var name = document.getElementById("medicine_name");
+//   var packing = document.getElementById("packing");
+//   var generic_name = document.getElementById("generic_name");
+//   var suppliers_name = document.getElementById("suppliers_name");
+//   if(!notNull(name.value, "medicine_name_error"))
+//     name.focus();
+//   else if(!notNull(packing.value, "pack_error"))
+//     packing.focus();
+//   else if(!notNull(generic_name.value, "generic_name_error"))
+//     generic_name.focus();
+//   else {
+//     var xhttp = new XMLHttpRequest();
+//   	xhttp.onreadystatechange = function() {
+//   		if(xhttp.readyState = 4 && xhttp.status == 200)
+//   			document.getElementById("medicine_acknowledgement").innerHTML = xhttp.responseText;
+//   	};
+//   	xhttp.open("GET", "php/add_new_medicine.php?name=" + name.value + "&packing=" + packing.value + "&generic_name=" + generic_name.value + "&suppliers_name=" + suppliers_name.value, true);
+//   	xhttp.send();
+//   }
+// }
+
 function addMedicine() {
+  alert("Hiiii");
   document.getElementById("medicine_acknowledgement").innerHTML = "";
   var name = document.getElementById("medicine_name");
-  var packing = document.getElementById("packing");
+  // var packing = document.getElementById("packing");
   var generic_name = document.getElementById("generic_name");
-  var suppliers_name = document.getElementById("suppliers_name");
+  // var suppliers_name = document.getElementById("suppliers_name");
   if(!notNull(name.value, "medicine_name_error"))
     name.focus();
-  else if(!notNull(packing.value, "pack_error"))
-    packing.focus();
+  // else if(!notNull(packing.value, "pack_error"))
+  //   packing.focus();
   else if(!notNull(generic_name.value, "generic_name_error"))
     generic_name.focus();
   else {
@@ -178,7 +202,7 @@ function addMedicine() {
   		if(xhttp.readyState = 4 && xhttp.status == 200)
   			document.getElementById("medicine_acknowledgement").innerHTML = xhttp.responseText;
   	};
-  	xhttp.open("GET", "php/add_new_medicine.php?name=" + name.value + "&packing=" + packing.value + "&generic_name=" + generic_name.value + "&suppliers_name=" + suppliers_name.value, true);
+  	xhttp.open("GET", "php/add_new_medicine.php?name=" + name.value + "&generic_name=" + generic_name.value, true);
   	xhttp.send();
   }
 }

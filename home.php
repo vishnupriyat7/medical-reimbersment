@@ -66,17 +66,17 @@
                   </div>
                 ';
               }
-              createSection1('manage_customer.php', 'Total Customer', 'customers');
-              createSection1('manage_supplier.php', 'Total Supplier', 'suppliers');
+              // createSection1('manage_customer.php', 'Total Customer', 'customers');
+              // createSection1('manage_supplier.php', 'Total Supplier', 'suppliers');
               createSection1('manage_medicine.php', 'Total Medicine', 'medicines');
-              createSection1('manage_medicine_stock.php?out_of_stock', 'Out of Stock', 'medicines_stock');
-              createSection1('manage_medicine_stock.php?expired', 'Expired', 'medicines_stock');
+              // createSection1('manage_medicine_stock.php?out_of_stock', 'Out of Stock', 'medicines_stock');
+              // createSection1('manage_medicine_stock.php?expired', 'Expired', 'medicines_stock');
               createSection1('manage_invoice.php', 'Total Invoice', 'invoices');
             ?>
 
           </div>
 
-          <div class="col col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding: 7px 0; margin-left: 15px;">
+          <!-- <div class="col col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding: 7px 0; margin-left: 15px;">
             <div class="todays-report">
               <div class="h5">Todays Report</div>
               <table class="table table-bordered table-striped table-hover">
@@ -114,7 +114,7 @@
                 </tbody>
               </table>
             </div>
-          </div>
+          </div> -->
 
         </div>
 
@@ -136,12 +136,12 @@
               ';
             }
             createSection2('address-card', 'new_invoice.php', 'Create New Invoice');
-            createSection2('handshake', 'add_customer.php', 'Add New Customer');
+            // createSection2('handshake', 'add_customer.php', 'Add New Customer');
             createSection2('shopping-bag', 'add_medicine.php', 'Add New Medicine');
-            createSection2('group', 'add_supplier.php', 'Add New Supplier');
-            createSection2('bar-chart', 'add_purchase.php', 'Add New Purchase');
-            createSection2('book', 'sales_report.php', 'Sales Report');
-            createSection2('book', 'purchase_report.php', 'Purchase Report');
+            // createSection2('group', 'add_supplier.php', 'Add New Supplier');
+            // createSection2('bar-chart', 'add_purchase.php', 'Add New Purchase');
+            // createSection2('book', 'sales_report.php', 'Sales Report');
+            // createSection2('book', 'purchase_report.php', 'Purchase Report');
           ?>
 
         </div>

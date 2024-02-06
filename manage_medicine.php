@@ -36,7 +36,7 @@
             <label class="font-weight-bold" for="">Search :&emsp;</label>
             <input type="text" class="form-control" id="by_name" placeholder="By Medicine Name" onkeyup="searchMedicine(this.value, 'name');">
             &emsp;<input type="text" class="form-control" id="by_generic_name" placeholder="By Generic Name" onkeyup="searchMedicine(this.value, 'generic_name');">
-            &emsp;<input type="text" class="form-control" id="by_suppliers_name" placeholder="By Supplier Name" onkeyup="searchMedicine(this.value, 'suppliers_name');">
+            <!-- &emsp;<input type="text" class="form-control" id="by_suppliers_name" placeholder="By Supplier Name" onkeyup="searchMedicine(this.value, 'suppliers_name');"> -->
           </div>
 
           <div class="col col-md-12">
@@ -50,9 +50,9 @@
             			<tr>
             				<th style="width: 5%;">SL.</th>
             				<th style="width: 20%;">Medicine Name</th>
-                    <th style="width: 10%;">Packing</th>
+                    <!-- <th style="width: 10%;">Packing</th> -->
                     <th style="width: 30%;">Generic Name</th>
-            				<th style="width: 20%;">Supplier</th>
+            				<!-- <th style="width: 20%;">Supplier</th> -->
                     <th style="width: 15%;">Action</th>
             			</tr>
             		</thead>
