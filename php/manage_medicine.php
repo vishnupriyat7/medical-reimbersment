@@ -99,9 +99,17 @@ function showEditOptionsRow($seq_no, $row) {
   <?php
 }
 
-function updateMedicine($id, $name, $packing, $generic_name, $suppliers_name) {
+// function updateMedicine($id, $name, $packing, $generic_name, $suppliers_name) {
+//   require "db_connection.php";
+//   $query = "UPDATE medicines SET NAME = '$name', PACKING = '$packing', GENERIC_NAME = '$generic_name', SUPPLIER_NAME = '$suppliers_name' WHERE ID = $id";
+//   $result = mysqli_query($con, $query);
+//   if(!empty($result))
+//     showMedicines(0);
+// }
+
+function updateMedicine($id, $name, $generic_name) {
   require "db_connection.php";
-  $query = "UPDATE medicines SET NAME = '$name', PACKING = '$packing', GENERIC_NAME = '$generic_name', SUPPLIER_NAME = '$suppliers_name' WHERE ID = $id";
+  $query = "UPDATE medicines SET NAME = '$name', GENERIC_NAME = '$generic_name' WHERE ID = $id";
   $result = mysqli_query($con, $query);
   if(!empty($result))
     showMedicines(0);
@@ -113,8 +121,8 @@ function searchMedicine($text, $tag) {
     $column = "NAME";
   if($tag == "generic_name")
     $column = "GENERIC_NAME";
-  if($tag == "suppliers_name")
-    $column = "SUPPLIER_NAME";
+  // if($tag == "suppliers_name")
+  //   $column = "SUPPLIER_NAME";
   if($con) {
     $seq_no = 0;
     $query = "SELECT * FROM medicines WHERE UPPER($column) LIKE '%$text%'";

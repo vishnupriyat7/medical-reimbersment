@@ -168,7 +168,7 @@ function fill($name, $column)
 {
   require 'db_connection.php';
   if ($con) {
-    $query = "SELECT * FROM medicines_stock WHERE UPPER(NAME) = '$name'";
+    $query = "SELECT * FROM medicines WHERE UPPER(NAME) = '$name'";
     $result = mysqli_query($con, $query);
     if (mysqli_num_rows($result) != 0) {
       $row = mysqli_fetch_array($result);

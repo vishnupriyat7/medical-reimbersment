@@ -184,7 +184,7 @@ function addSupplier() {
 // }
 
 function addMedicine() {
-  alert("Hiiii");
+  // alert("Hiiii");
   document.getElementById("medicine_acknowledgement").innerHTML = "";
   var name = document.getElementById("medicine_name");
   // var packing = document.getElementById("packing");
