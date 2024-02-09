@@ -1,5 +1,5 @@
 <?php
-  $SERVER = 'localhost';
+  $SERVER = '172.20.19.21';
   $USERNAME = 'root';
   $PASSWORD = 'Root@123';
   $DB = 'medical-claim';
