@@ -59,7 +59,7 @@
                   <th>Chemical/Pharmacological Name</th>
                   <th>Price Description</th>
                   <th>Remarks</th>
-                  <th>Total Discount</th>
+                  <!-- <th>Total Discount</th> -->
                   <th>Action</th>
 
                   <!--<th>Invoice No</th>
