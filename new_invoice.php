@@ -85,12 +85,16 @@
         <!-- new user button -->
         <div class="row col col-md-12">
           <div class="row col col-md-12 font-weight-bold">
+            <div class="col col-md-1">Application No:</div>
+            <div class="col col-md-2">
+              <input type="text" class="form-control" id="appl_no" name="appl_no">
+            </div>
             <div class="col col-md-1">Bill No:</div>
-            <div class="col col-md-3">
+            <div class="col col-md-2">
               <input type="text" class="form-control" id="bill_no" name="bill_no">
             </div>
             <div class="col col-md-1">Bill Date:</div>
-            <div class="col col-md-3">
+            <div class="col col-md-2">
               <input type="text" class="form-control" id="bill_dt" name="bill_dt">
             </div>
           </div>
@@ -135,25 +139,25 @@
           </div>
         </div> -->
 
-        <div class="col col-md-12">
-          <hr class="col-md-12" style="padding: 0px;">
-        </div>
+          <div class="col col-md-12">
+            <hr class="col-md-12" style="padding: 0px;">
+          </div>
 
-        <div class="row col col-md-12">
-          <div id="save_button" class="col col-md-2 form-group float-right">
-            <label class="font-weight-bold" for=""></label>
-            <button class="btn btn-success form-control font-weight-bold" onclick="addInvoice();">Save</button>
-          </div>
-          <div id="new_invoice_button" class="col col-md-2 form-group float-right" style="display: none;">
-            <label class="font-weight-bold" for=""></label>
-            <button class="btn btn-primary form-control font-weight-bold" onclick="location.reload();;">New Invoice</button>
-          </div>
-          <div id="print_button" class="col col-md-2 form-group float-right" style="display: none;">
-            <label class="font-weight-bold" for=""></label>
-            <button class="btn btn-warning form-control font-weight-bold" onclick="printInvoice(document.getElementById('invoice_number').value);">Print</button>
-          </div>
-          <div class="col col-md-4 form-group"></div>
-          <!-- <div class="col col-md-2 form-group float-right">
+          <div class="row col col-md-12">
+            <div id="save_button" class="col col-md-2 form-group float-right">
+              <label class="font-weight-bold" for=""></label>
+              <button class="btn btn-success form-control font-weight-bold" onclick="addInvoice();">Save</button>
+            </div>
+            <div id="new_invoice_button" class="col col-md-2 form-group float-right" style="display: none;">
+              <label class="font-weight-bold" for=""></label>
+              <button class="btn btn-primary form-control font-weight-bold" onclick="location.reload();;">New Invoice</button>
+            </div>
+            <div id="print_button" class="col col-md-2 form-group float-right" style="display: none;">
+              <label class="font-weight-bold" for=""></label>
+              <button class="btn btn-warning form-control font-weight-bold" onclick="printInvoice(document.getElementById('invoice_number').value);">Print</button>
+            </div>
+            <div class="col col-md-4 form-group"></div>
+            <!-- <div class="col col-md-2 form-group float-right">
             <label class="font-weight-bold" for="">Paid Amount :</label>
             <input type="text" class="form-control" name="total_discount" onkeyup="getChange(this.value);">
           </div>
@@ -161,15 +165,15 @@
             <label class="font-weight-bold" for="">Change :</label>
             <input type="text" class="form-control" id="change_amt" disabled>
           </div> -->
-        </div>
+          </div>
 
-        <div id="invoice_acknowledgement" class="col-md-12 h5 text-success font-weight-bold text-center" style="font-family: sans-serif;" </div>
+          <div id="invoice_acknowledgement" class="col-md-12 h5 text-success font-weight-bold text-center" style="font-family: sans-serif;" </div>
 
+          </div>
+          <!-- form content end -->
+          <hr style="border-top: 2px solid #ff5252;">
         </div>
-        <!-- form content end -->
-        <hr style="border-top: 2px solid #ff5252;">
       </div>
-    </div>
 </body>
 
 </html>
