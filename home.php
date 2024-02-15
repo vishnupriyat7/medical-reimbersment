@@ -14,7 +14,8 @@
     <script src="js/restrict.js"></script>
   </head>
   <body>
-    <?php include "sections/sidenav.html"; ?>
+    <?php include "sections/sidenav.html";
+    var_dump($_SESSION['userid']); ?>
     <div class="container-fluid">
       <div class="container">
         <!-- header section -->

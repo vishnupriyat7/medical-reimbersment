@@ -20,7 +20,7 @@
 </head>
 
 <body>
-  <div id="add_new_customer_model">
+  <!-- <div id="add_new_customer_model">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header" style="background-color: #ff5252; color: white">
@@ -29,12 +29,12 @@
         </div>
         <div class="modal-body">
           <?php
-          include('sections/add_new_customer.html');
+          // include('sections/add_new_customer.html');
           ?>
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- including side navigations -->
   <?php include("sections/sidenav.html"); ?>
 
@@ -91,7 +91,8 @@
             </div>
             <div class="col col-md-1">Bill Date:</div>
             <div class="col col-md-3">
-              <input type="text" class="form-control" id="bill_dt" name="bill_dt">
+              <input type="date" class="datepicker form-control hasDatepicker" id="bill_dt" name="bill_dt" value='<?php echo date('Y-m-d'); ?>' onblur="checkDate(this.value, 'date_error');">
+              <code class="text-danger small font-weight-bold float-right" id="date_error" style="display: none;"></code>
             </div>
           </div>
         </div>
@@ -114,7 +115,7 @@
         <div class="row col col-md-12 " id="invoice_medicine_list_div">
           <script>
             addRow();
-            getInvoiceNumber();
+            // getInvoiceNumber();
           </script>
         </div>
         <!-- end medicines -->
@@ -142,7 +143,7 @@
         <div class="row col col-md-12">
           <div id="save_button" class="col col-md-2 form-group float-right">
             <label class="font-weight-bold" for=""></label>
-            <button class="btn btn-success form-control font-weight-bold" onclick="addInvoice();">Save</button>
+            <button class="btn btn-success form-control font-weight-bold" onclick="addInvoice();">Savecfg</button>
           </div>
           <div id="new_invoice_button" class="col col-md-2 form-group float-right" style="display: none;">
             <label class="font-weight-bold" for=""></label>
@@ -163,7 +164,7 @@
           </div> -->
         </div>
 
-        <div id="invoice_acknowledgement" class="col-md-12 h5 text-success font-weight-bold text-center" style="font-family: sans-serif;" </div>
+        <div id="invoice_acknowledgement" class="col-md-12 h5 text-success font-weight-bold text-center" style="font-family: sans-serif;" ></div>
 
         </div>
         <!-- form content end -->

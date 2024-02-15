@@ -12,8 +12,8 @@ if (isset($_GET['action']) && $_GET['action'] == "is_invoice")
 if (isset($_GET['action']) && $_GET['action'] == "is_medicine")
   isMedicine(strtoupper($_GET['name']));
 
-if (isset($_GET['action']) && $_GET['action'] == "current_invoice_number")
-  getInvoiceNumber();
+// if (isset($_GET['action']) && $_GET['action'] == "current_invoice_number")
+//   getInvoiceNumber();
 
 if (isset($_GET['action']) && $_GET['action'] == "medicine_list")
   showMedicineList(strtoupper($_GET['text']));
@@ -48,7 +48,7 @@ function isInvoiceExist($invoice_number)
 {
   require "db_connection.php";
   if ($con) {
-    $query = "SELECT * FROM sales WHERE INVOICE_NUMBER = $invoice_number";
+    $query = "SELECT * FROM bills WHERE bill_no = '$invoice_number'";    
     $result = mysqli_query($con, $query);
     $row = mysqli_fetch_array($result);
     echo ($row) ? "true" : "false";
@@ -102,8 +102,8 @@ function createMedicineInfoRow()
       </div>
     </div> -->
 
-  <div class="row col col-md-12">
-    <div class="col-md-3">
+  <!-- <div class="row col col-md-12"> -->
+    <div class="col-md-2">
       <input id="medicine_name_<?php echo $row_number; ?>" name="medicine_name" class="form-control" list="medicine_list_<?php echo $row_number; ?>" placeholder="Select Medicine" onkeydown="medicineOptions(this.value, 'medicine_list_<?php echo $row_number; ?>');" onfocus="medicineOptions(this.value, 'medicine_list_<?php echo $row_number; ?>');" onchange="fillFields(this.value, '<?php echo $row_number; ?>');">
       <code class="text-danger small font-weight-bold float-right" id="medicine_name_error_<?php echo $row_number; ?>" style="display: none;"></code>
       <datalist id="medicine_list_<?php echo $row_number; ?>" style="display: none; max-height: 200px; overflow: auto;">
@@ -122,8 +122,8 @@ function createMedicineInfoRow()
         <input type="number" class="form-control" id="discount_<?php echo $row_number; ?>" value="0" onkeyup="getTotal('<?php echo $row_number; ?>');">
         <code class="text-danger small font-weight-bold float-right" id="discount_error_<?php echo $row_number; ?>" style="display: none;"></code>
       </div> -->
-    <div class="col col-md-2"><input type="text" class="form-control" id="total_<?php echo $row_number; ?>"></div>
-    <div class="col col-md-2"><input type="text" class="form-control" id="remark_<?php echo $row_number; ?>"></div>
+    <div class="col col-md-1"><input type="text" class="form-control" id="total_<?php echo $row_number; ?>"></div>
+    <div class="col col-md-1"><input type="text" class="form-control" id="remark_<?php echo $row_number; ?>"></div>
     <div class="col col-md-2">
       <button class="btn btn-primary" onclick="addRow();">
         <i class="fa fa-plus"></i>
@@ -132,23 +132,23 @@ function createMedicineInfoRow()
         <i class="fa fa-trash"></i>
       </button>
     </div>
-  </div>
+  <!-- </div> -->
   <div class="col col-md-12">
     <hr class="col-md-12" style="padding: 0px;">
   </div>
 <?php
 }
 
-function getInvoiceNumber()
-{
-  require 'db_connection.php';
-  if ($con) {
-    $query = "SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'pharmacy' AND TABLE_NAME = 'invoices';";
-    $result = mysqli_query($con, $query);
-    $row = mysqli_fetch_array($result);
-    echo $row['AUTO_INCREMENT'];
-  }
-}
+// function getInvoiceNumber()
+// {
+//   require 'db_connection.php';
+//   if ($con) {
+//     $query = "SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'medical-claim' AND TABLE_NAME = 'bills';";
+//     $result = mysqli_query($con, $query);
+//     $row = mysqli_fetch_array($result);
+//     echo $row['AUTO_INCREMENT'];
+//   }
+// }
 
 function showMedicineList($text)
 {
