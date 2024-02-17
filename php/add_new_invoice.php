@@ -59,7 +59,7 @@ function isMedicine($name)
 {
   require "db_connection.php";
   if ($con) {
-    $query = "SELECT * FROM medicines_stock WHERE UPPER(NAME) = '$name'";
+    $query = "SELECT * FROM medicines WHERE UPPER(NAME) = '$name'";
     $result = mysqli_query($con, $query);
     $row = mysqli_fetch_array($result);
     echo ($row) ? "true" : "false";
@@ -122,7 +122,7 @@ function createMedicineInfoRow()
         <input type="number" class="form-control" id="discount_<?php echo $row_number; ?>" value="0" onkeyup="getTotal('<?php echo $row_number; ?>');">
         <code class="text-danger small font-weight-bold float-right" id="discount_error_<?php echo $row_number; ?>" style="display: none;"></code>
       </div> -->
-    <div class="col col-md-1"><input type="text" class="form-control" id="total_<?php echo $row_number; ?>"></div>
+    <div class="col col-md-1"><input type="number" class="form-control" id="total_<?php echo $row_number; ?>" value="0" onkeyup="getTotal('<?php echo $row_number; ?>');"></div>
     <div class="col col-md-1"><input type="text" class="form-control" id="remark_<?php echo $row_number; ?>"></div>
     <div class="col col-md-2">
       <button class="btn btn-primary" onclick="addRow();">
@@ -155,12 +155,12 @@ function showMedicineList($text)
   require 'db_connection.php';
   if ($con) {
     if ($text == "")
-      $query = "SELECT * FROM medicines_stock";
+      $query = "SELECT * FROM medicines";
     else
-      $query = "SELECT * FROM medicines_stock WHERE UPPER(NAME) LIKE '%$text%'";
+      $query = "SELECT * FROM medicines WHERE UPPER(NAME) LIKE '%$text%'";
     $result = mysqli_query($con, $query);
     while ($row = mysqli_fetch_array($result))
-      echo '<option value="' . $row['NAME'] . '">' . $row['NAME'] . '</option>';
+      echo '<option value="' . $row['NAME'] . '" id="'. $row['ID'] .'">' . $row['NAME'] . '</option>';
   }
 }
 

@@ -15,13 +15,21 @@
       showMedicines($id);
     }
 
+    // if(isset($_GET["action"]) && $_GET["action"] == "update") {
+    //   $id = $_GET["id"];
+    //   $name = ucwords($_GET["name"]);
+    //   $packing = strtoupper($_GET["packing"]);
+    //   $generic_name = ucwords($_GET["generic_name"]);
+    //   $suppliers_name = ucwords($_GET["suppliers_name"]);
+    //   updateMedicine($id, $name, $packing, $generic_name, $suppliers_name);
+    // }
     if(isset($_GET["action"]) && $_GET["action"] == "update") {
       $id = $_GET["id"];
       $name = ucwords($_GET["name"]);
-      $packing = strtoupper($_GET["packing"]);
+      // $packing = strtoupper($_GET["packing"]);
       $generic_name = ucwords($_GET["generic_name"]);
-      $suppliers_name = ucwords($_GET["suppliers_name"]);
-      updateMedicine($id, $name, $packing, $generic_name, $suppliers_name);
+      // $suppliers_name = ucwords($_GET["suppliers_name"]);
+      updateMedicine($id, $name, $generic_name);
     }
 
     if(isset($_GET["action"]) && $_GET["action"] == "cancel")

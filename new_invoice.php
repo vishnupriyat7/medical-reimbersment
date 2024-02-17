@@ -85,8 +85,12 @@
         <!-- new user button -->
         <div class="row col col-md-12">
           <div class="row col col-md-12 font-weight-bold">
+            <div class="col col-md-1">Application No:</div>
+            <div class="col col-md-2">
+              <input type="text" class="form-control" id="appl_no" name="appl_no">
+            </div>
             <div class="col col-md-1">Bill No:</div>
-            <div class="col col-md-3">
+            <div class="col col-md-2">
               <input type="text" class="form-control" id="bill_no" name="bill_no">
             </div>
             <div class="col col-md-1">Bill Date:</div>
@@ -136,9 +140,9 @@
           </div>
         </div> -->
 
-        <div class="col col-md-12">
-          <hr class="col-md-12" style="padding: 0px;">
-        </div>
+          <div class="col col-md-12">
+            <hr class="col-md-12" style="padding: 0px;">
+          </div>
 
         <div class="row col col-md-12">
           <div id="save_button" class="col col-md-2 form-group float-right">
@@ -162,15 +166,15 @@
             <label class="font-weight-bold" for="">Change :</label>
             <input type="text" class="form-control" id="change_amt" disabled>
           </div> -->
-        </div>
+          </div>
 
         <div id="invoice_acknowledgement" class="col-md-12 h5 text-success font-weight-bold text-center" style="font-family: sans-serif;" ></div>
 
+          </div>
+          <!-- form content end -->
+          <hr style="border-top: 2px solid #ff5252;">
         </div>
-        <!-- form content end -->
-        <hr style="border-top: 2px solid #ff5252;">
       </div>
-    </div>
 </body>
 
 </html>

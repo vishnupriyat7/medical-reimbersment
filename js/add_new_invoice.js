@@ -1,14 +1,11 @@
 var rows = 0;
 
 class MedicineInfo {
-  constructor(name, batch_id, expiry_date, quantity, mrp, discount, total) {
+  constructor(name, chemical_name, price, remark) {
     this.name = name;
-    this.batch_id = batch_id;
-    this.expiry_date = expiry_date;
-    this.quantity = quantity;
-    this.mrp = mrp;
-    this.discount = discount;
-    this.total = total;
+    this.chemical_name = chemical_name;
+    this.price = price;
+    this.remark = remark;
   }
 }
 
@@ -122,33 +119,34 @@ function fill(name, field_name, column) {
 }
 
 function getTotal(id) {
-  var mrp = document.getElementById("mrp_" + id).value;
-  var qty = document.getElementById("quantity_" + id).value;
-  if (!checkQuantity(qty, 'quantity_error_' + id)) return;
-  var discount = document.getElementById("discount_" + id).value;
-  if (!checkValue(discount, 'discount_error_' + id)) return;
-  var total = document.getElementById("total_" + id);
-  total.value = mrp * qty - (discount * mrp * qty / 100);
+    // var mrp = document.getElementById("total_" + id).value;
+  // var qty = document.getElementById("quantity_" + id).value;
+  // if (!checkQuantity(qty, 'quantity_error_' + id)) return;
+  // var discount = document.getElementById("discount_" + id).value;
+  // if (!checkValue(discount, 'discount_error_' + id)) return;
+  // var total = document.getElementById("total_" + id).value;
+  // total.value = mrp * qty - (discount * mrp * qty / 100);
 
   // net total , discount and total Amount
   var parent = document.getElementById('invoice_medicine_list_div');
   var row_count = parent.childElementCount;
   var medicine_info = parent.children;
   var total_amount = 0;
-  var total_discount = 0;
-  var net_total = 0;
+  // var total_discount = 0;
+  // var net_total = 0;
+  // console.log(medicine_info[1].children[2].children[0]);return;
   for (var i = 1; i < row_count; i++) {
-    qty = Number.parseInt(medicine_info[i].children[0].children[4].children[0].value);
-    mrp = Number.parseFloat(medicine_info[i].children[0].children[5].children[0].value);
-    discount = (qty * mrp * Number.parseFloat(medicine_info[i].children[0].children[6].children[0].value)) / 100;
+    // qty = Number.parseInt(medicine_info[i].children[0].children[4].children[0].value);
+    mrp = Number.parseFloat(medicine_info[i].children[2].children[0].value);
+    // discount = (qty * mrp * Number.parseFloat(medicine_info[i].children[0].children[6].children[0].value)) / 100;
 
-    total_amount += (qty * mrp);
-    total_discount += discount;
+    total_amount += mrp;
+    // total_discount += discount;
   }
-  net_total = total_amount - total_discount;
+  // net_total = total_amount - total_discount;
   document.getElementById("total_amount").value = total_amount;
-  document.getElementById("total_discount").value = total_discount;
-  document.getElementById("net_total").value = net_total;
+  // document.getElementById("total_discount").value = total_discount;
+  // document.getElementById("net_total").value = net_total;
 }
 
 function checkAvailableQuantity(value, id) {
@@ -247,24 +245,32 @@ function addInvoice() {
     var medicine_info = parent.children;
 
     var medicines = new Array(row_count - 1);
+    // medicine_info[i].children[2].children[0].value
     for (var i = 1; i < row_count; i++) {
       //alert(i);
       var elements_count = medicine_info[i].childElementCount;
       var elements = medicine_info[i].children;
 
-      var medicine_name = elements[0].children[0].children[0];
-      var medicine_name_error = elements[0].children[0].children[1];
+      var medicine_name = elements[0].children[0];
+      var medicine_name_error = elements[0].children[1];
 
       //var packing = elements[0].children[1].children[0];
       //var pack_error = elements[0].children[1].children[1];
 
-      var chemical_name = elements[0].children[1].children[0];
+      var chemical_name = elements[1].children[0];
       //var batch_id_error = elements[0].children[2].children[1];
 
-      var price = elements[0].children[2].children[0];
-      alert(elements[0].children[0].children[0].value);
-      alert(chemical_name.value);
-      alert(price.value);
+      var price = elements[2].children[0];
+      var remark = elements[3].children[0];
+      // if(medicine_name.value.trim() != ''){
+        // var el=$("#SelectColor")[0];
+        // var opSelected = medicine_name.querySelector(`[value="${elements.value}"]`);
+        // alert(opSelected.getAttribute('id'));
+      //  }
+      // console.log(opSelected);
+      // console.log(medicine_name.value);
+      // console.log(chemical_name.value);
+      // console.log(price.value);return;
       //var expiry_date_error = elements[0].children[3].children[1];
 
       // var remark = elements[0].children[3].children[0];
@@ -281,7 +287,6 @@ function addInvoice() {
       var total_amount = document.getElementById("total_amount");
       // var total_discount = document.getElementById("total_discount");
       // var net_total = document.getElementById("net_total");
-
       var flag = false;
       //alert(quantity.getAttribute('id').slice(9, 10));
 
@@ -297,46 +302,47 @@ function addInvoice() {
         medicine_name.focus();
       }
 
-      else if (!checkExpiry(expiry_date.value, medicine_name_error.getAttribute('id')) || checkExpiry(expiry_date.value, medicine_name_error.getAttribute('id')) == -1)
-        medicine_name.focus();
+      // else if (!checkExpiry(expiry_date.value, medicine_name_error.getAttribute('id')) || checkExpiry(expiry_date.value, medicine_name_error.getAttribute('id')) == -1)
+      //   medicine_name.focus();
 
-      else if (isAvailable == -1) {
-        medicine_name_error.style.display = "block";
-        medicine_name.focus();
-      }
+      // else if (isAvailable == -1) {
+      //   medicine_name_error.style.display = "block";
+      //   medicine_name.focus();
+      // }
 
-      else if (!checkQuantity(quantity.value, quantity_error.getAttribute('id')))
-        quantity.focus();
+      // else if (!checkQuantity(quantity.value, quantity_error.getAttribute('id')))
+      //   quantity.focus();
 
-      else if (quantity.value == 0) {
-        quantity_error.style.display = "block";
-        quantity_error.innerHTML = "Increase quantity or remover row!";
-        quantity.focus();
-      }
+      // else if (quantity.value == 0) {
+      //   quantity_error.style.display = "block";
+      //   quantity_error.innerHTML = "Increase quantity or remover row!";
+      //   quantity.focus();
+      // }
 
-      else if (isAvailable == -2) {
-        quantity_error.style.display = "block";
-        quantity.focus();
-      }
+      // else if (isAvailable == -2) {
+      //   quantity_error.style.display = "block";
+      //   quantity.focus();
+      // }
 
-      else if (!checkValue(discount.value, discount_error.getAttribute('id')))
-        discount.focus();
+      // else if (!checkValue(discount.value, discount_error.getAttribute('id')))
+      //   discount.focus();
 
       else {
         flag = true;
         //alert("row " + i + "perfect...");
-        medicines[i - 1] = new MedicineInfo(medicine_name.value, batch_id.value, expiry_date.value, quantity.value, mrp.value, discount.value, total.value);
+        medicines[i - 1] = new MedicineInfo(medicine_name.value, chemical_name.value, price.value, remark.value);
       }
-
+// console.log(medicines);
       if (!flag)
         return false;
     }
-
+    addNewInvoice(billno.value, billdate.value, invoice_date.value);
     for (var i = 0; i < row_count - 1; i++) {
-      updateStock(medicines[i].name, medicines[i].batch_id, medicines[i].quantity);
-      addSale(customers_name.value, customers_contact_number.value, invoice_number.value, medicines[i].name, medicines[i].batch_id, medicines[i].expiry_date, medicines[i].quantity, medicines[i].mrp, medicines[i].discount, medicines[i].total);
+      updateBillMedicine(medicines[i].name, medicines[i].chemical_name, medicines[i].price,medicines[i].remark);
+      // updateStock(medicines[i].name, medicines[i].batch_id, medicines[i].quantity);
+      // addSale(customers_name.value, customers_contact_number.value, invoice_number.value, medicines[i].name, medicines[i].batch_id, medicines[i].expiry_date, medicines[i].quantity, medicines[i].mrp, medicines[i].discount, medicines[i].total);
     }
-    addNewInvoice(customers_name.value, customers_contact_number.value, invoice_date.value, total_amount.value, total_discount.value, net_total.value);
+    // addNewInvoice(customers_name.value, customers_contact_number.value, invoice_date.value, total_amount.value, total_discount.value, net_total.value);
     document.getElementById("save_button").style.display = "none";
     document.getElementById("new_invoice_button").style.display = "block";
     document.getElementById("print_button").style.display = "block";
@@ -366,12 +372,12 @@ function addSale(customers_name, customers_contact_number, invoice_number, medic
   xhttp.send();
 }
 
-function addNewInvoice(customers_name, customers_contact_number, invoice_date, total_amount, total_discount, net_total) {
+function addNewInvoice(bill_no, bill_dt) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (xhttp.readyState = 4 && xhttp.status == 200)
       document.getElementById("invoice_acknowledgement").innerHTML = xhttp.responseText;
   };
-  xhttp.open("GET", "php/add_new_invoice.php?action=add_new_invoice&customers_name=" + customers_name + "&customers_contact_number=" + customers_contact_number + "&invoice_date=" + invoice_date + "&total_amount=" + total_amount + "&total_discount=" + total_discount + "&net_total=" + net_total, true);
+  xhttp.open("GET", "php/add_new_invoice.php?action=add_new_invoice&bill_no=" + bill_no + "&bill_dt=" + bill_dt, true);
   xhttp.send();
 }

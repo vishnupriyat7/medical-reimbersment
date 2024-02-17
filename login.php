@@ -57,9 +57,9 @@
 
         </div> <!-- cord-body class -->
         <div class="card-footer">
-          <div class="text-center">
+          <!-- <div class="text-center">
             <a class="text-light" onclick="displayForgotPasswordForm();" style="cursor: pointer;">Forgot password?</a>
-          </div>
+          </div> -->
         </div> <!-- cord-footer class -->
       </div> <!-- card class -->
 
