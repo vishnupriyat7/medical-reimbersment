@@ -22,9 +22,11 @@
 
       // alert(xhttp.responseText);
       if(xhttp.responseText == "")
-        window.location.href = "http://localhost/medical-clame/index.php";
+        // window.location.href = "http://localhost/medical-claim/index.php";
+        window.location.href = "http://localhost/medical-claim/login.php";
       if(xhttp.responseText == "true")
-        window.location.href = "http://localhost/medical-clame/home.php";
+        // window.location.href = "http://localhost/medical-claim/home.php";
+        window.location.href = "http://localhost/medical-claim/index.php";
 
     </script>
   </head>

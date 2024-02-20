@@ -44,8 +44,10 @@
             <!-- header section -->
             <?php
             require "php/header.php";
-            createHeader('clipboard', 'New Invoice', 'Create New Invoice');
+            createHeader('clipboard', 'New Application', 'Create New Application');
             ?>
+          
+
             <!-- header section end -->
 
             <!-- form content -->
@@ -141,6 +143,11 @@
                         <label class="font-weight-bold" for=""></label>
                         <button class="btn btn-success form-control font-weight-bold" onclick="addApplicant();">Save</button>
                     </div>
+
+                    <div class="alert alert-success" role="alert" style="display: none;" id="apl_save_succes">
+                        Application Saved Successfully!... with Application Number <?php echo $_POST['id']; ?>
+                    </div>
+
                     <!-- <div id="new_invoice_button" class="col col-md-2 form-group float-right" style="display: none;">
                         <label class="font-weight-bold" for=""></label>
                         <button class="btn btn-primary form-control font-weight-bold" onclick="location.reload();;">New Invoice</button>

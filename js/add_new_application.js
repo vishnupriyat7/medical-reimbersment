@@ -155,19 +155,20 @@
 function addApplicant() {
   // save invoice
   var doctor_name = document.getElementById('doctor_name');
-  alert(doctor_name.value);
+  // alert(doctor_name.value);
   var applicant_name = document.getElementById('applicant_name');
-  alert(applicant_name.value);
+  // alert(applicant_name.value);
   var relative_name = document.getElementById('relative_name');
   var relation = document.getElementById('relation_type');
   var date_from = document.getElementById('from_date');
   var date_to = document.getElementById('to_date');
+ 
   //alert(invoice_number.value);
 
   
   addNewApplication(doctor_name.value, applicant_name.value, relative_name.value, relation.value, date_from.value, date_to.value);
     // document.getElementById("save_button").style.display = "none";
-    // document.getElementById("new_invoice_button").style.display = "block";
+    document.getElementById("apl_save_succes").style.display = "block";
     // document.getElementById("print_button").style.display = "block";
   
   return false;
