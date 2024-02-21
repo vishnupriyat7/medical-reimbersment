@@ -36,9 +36,9 @@
 
                 <div class="col-md-12 form-group form-inline">
                     <label class="font-weight-bold" for="">Search :&emsp;</label>
-                    <input type="text" class="form-control" id="by_name" placeholder="By Application Number" onkeyup="searchMedicine(this.value, 'name');">
-                    &emsp;<input type="text" class="form-control" id="by_generic_name" placeholder="Applicant Name" onkeyup="searchMedicine(this.value, 'generic_name');">
-                    <!-- &emsp;<input type="text" class="form-control" id="by_suppliers_name" placeholder="By Supplier Name" onkeyup="searchMedicine(this.value, 'suppliers_name');"> -->
+                    <input type="text" class="form-control" id="by_applno" placeholder="By Application Number" onkeyup="searchApplcn(this.value, 'applno');">
+                    &emsp;<input type="text" class="form-control" id="by_applcnt_name" placeholder="By Applicant Name" onkeyup="searchApplcn(this.value, 'applcnt_name');">
+                    <!-- &emsp;<input type="text" class="form-control" id="by_suppliers_name" placeholder="By doct" onkeyup="searchMedicine(this.value, 'suppliers_name');"> -->
                 </div>
 
                 <div class="col col-md-12">

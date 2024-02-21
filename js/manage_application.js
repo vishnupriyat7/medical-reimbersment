@@ -96,13 +96,13 @@ function deleteApplication(id) {
     xhttp.send();
   }
   
-  function searchMedicine(text, tag) {
-    if(tag == "name") {
-      document.getElementById("by_generic_name").value = "";
+  function searchApplcn(text, tag) {
+    if(tag == "applno") {
+      document.getElementById("by_applno").value = "";
       // document.getElementById("by_suppliers_name").value = "";
     }
-    if(tag == "generic_name") {
-      document.getElementById("by_name").value = "";
+    if(tag == "applcnt_name") {
+      document.getElementById("by_applcnt_name").value = "";
       // document.getElementById("by_suppliers_name").value = "";
     }
     // if(tag == "suppliers_name") {

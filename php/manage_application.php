@@ -200,15 +200,15 @@ function updateApplication($id, $doctor_name, $aplicant_name, $relative_name, $r
 function searchMedicine($text, $tag)
 {
   require "db_connection.php";
-  if ($tag == "name")
-    $column = "NAME";
-  if ($tag == "generic_name")
-    $column = "GENERIC_NAME";
+  if ($tag == "applno")
+    $column = "id";
+  if ($tag == "applcnt_name")
+    $column = "applicant_name";
   // if($tag == "suppliers_name")
   //   $column = "SUPPLIER_NAME";
   if ($con) {
     $seq_no = 0;
-    $query = "SELECT * FROM medicines WHERE UPPER($column) LIKE '%$text%'";
+    $query = "SELECT * FROM application WHERE $column LIKE '%$text%'";
     $result = mysqli_query($con, $query);
     while ($row = mysqli_fetch_array($result)) {
       $seq_no++;
