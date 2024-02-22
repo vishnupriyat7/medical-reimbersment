@@ -46,7 +46,7 @@ if ($con) {
     showApplictndtls(0);
 
   if (isset($_GET["action"]) && $_GET["action"] == "search")
-    searchMedicine(strtoupper($_GET["text"]), $_GET["tag"]);
+    searchApplcn(strtoupper($_GET["text"]), $_GET["tag"]);
 }
 
 function showApplictndtls($id)
@@ -197,7 +197,7 @@ function updateApplication($id, $doctor_name, $aplicant_name, $relative_name, $r
     showApplictndtls(0);
 }
 
-function searchMedicine($text, $tag)
+function searchApplcn($text, $tag)
 {
   require "db_connection.php";
   if ($tag == "applno")

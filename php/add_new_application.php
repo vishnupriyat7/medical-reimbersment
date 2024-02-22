@@ -1,10 +1,7 @@
 <?php
 
-
-
 if (isset($_GET['action']) && $_GET['action'] == "add_new_application")
     addNewApplication();
-
 
 
 function addNewApplication()
@@ -31,6 +28,21 @@ function addNewApplication()
         // var_dump($query);
 
         $result = mysqli_query($con, $query);
-        echo ($result) ? "Application saved..." : "falied to save Application...";
+        // var_dump($result);
+        // echo ($result) ? "Application saved..." : "falied to save Application...";
+
+        if ($result) {
+            // Get the last inserted ID
+            $application_number = mysqli_insert_id($con);
+            // Close the statement
+            mysqli_stmt_close($statement);
+
+            echo json_encode(array("success" => true, "application_number" => $application_number));
+        } else {
+            echo json_encode(array("success" => false, "message" => "Failed to save application"));
+        }
+
+        // Close the database connection
+        mysqli_close($con);
     }
 }
