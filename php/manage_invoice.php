@@ -1,14 +1,12 @@
 <?php
-
 if (isset($_GET["action"]) && $_GET["action"] == "delete") {
   require "db_connection.php";
-  $invoice_number = $_GET["invoice_number"];
+  $invoice_number = $_GET["id"];
   $query = "DELETE FROM invoices WHERE INVOICE_ID = $invoice_number";
   $result = mysqli_query($con, $query);
   if (!empty($result))
     showInvoices();
 }
-
 if (isset($_GET["action"]) && $_GET["action"] == "refresh")
   showInvoices();
 
@@ -25,12 +23,12 @@ function showInvoices()
     $seq_no = 0;
     // $query = "SELECT * FROM invoices INNER JOIN customers ON invoices.CUSTOMER_ID = customers.ID";
     // $query = "SELECT ap.*,rl.* FROM application ap JOIN relation rl ON ap.relation_desig_id = rl.relation_id ORDER BY ap.id ASC";
-    $query = "SELECT * FROM application a JOIN bills b ON a.id = b.application_id JOIN medicines_list m ON b.id = m.bill_id";
+    $query = "SELECT a.*, m.price FROM application a JOIN bills b ON a.id = b.application_id JOIN medicines_list m ON b.id = m.bill_id";
 
     $result = mysqli_query($con, $query);
 
     while ($row = mysqli_fetch_array($result)) {
-      // var_dump($row);
+      var_dump($row['id']);
       $seq_no++;
       showInvoiceRow($seq_no, $row);
     }
@@ -49,7 +47,7 @@ function showInvoiceRow($seq_no, $row)
     <td><?php echo $row['price']; ?></td>
 
     <td>
-      <button class="btn btn-warning btn-sm" onclick="printInvoice(<?php echo $row['INVOICE_ID']; ?>);">
+      <button class="btn btn-warning btn-sm" onclick="printInvoice(<?php echo $row['id']; ?>);">
         <i class="fa fa-fax"></i>
       </button>
       <button class="btn btn-danger btn-sm" onclick="deleteInvoice(<?php echo $row['id']; ?>);">
