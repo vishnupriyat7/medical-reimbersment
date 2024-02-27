@@ -2,7 +2,8 @@ function showSuggestions(text, action) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if(xhttp.readyState = 4 && xhttp.status == 200)
-      document.getElementById(action + "_suggestions").innerHTML = xhttp.responseText;
+      // document.getElementById(action + "_suggestions").innerHTML = xhttp.responseText;
+      document.getElementById(action + "_suggestions")= xhttp.responseText;
   };
   xhttp.open("GET", "php/suggestions.php?action=" + action + "&text=" + text, true);
   xhttp.send();
