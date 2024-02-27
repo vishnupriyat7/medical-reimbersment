@@ -53,12 +53,13 @@
               <thead>
                 <tr>
                   <th>SL.</th>
-                  <th>Bill No</th>
-                  <th>Bill Date</th>
-                  <th>Medicine Name</th>
-                  <th>Chemical/Pharmacological Name</th>
+                  <th>Appl.No</th>
+                  <th>Applicant Name</th>
+                  <th>Date From</th>
+                  <th>Date To</th>
+                  <!-- <th>Chemical/Pharmacological Name</th> -->
                   <th>Price Description</th>
-                  <th>Remarks</th>
+                  <!-- <th>Remarks</th> -->
                   <!-- <th>Total Discount</th> -->
                   <th>Action</th>
 
