@@ -87,7 +87,12 @@
           <div class="row col col-md-12 font-weight-bold">
             <div class="col col-md-1">Application No:</div>
             <div class="col col-md-2">
-              <input type="text" class="form-control" id="appl_no" name="appl_no">
+              <!-- <input type="text" class="form-control" id="appl_no" name="appl_no"> -->
+              <input id="application_no" name="application_no" class="form-control" list="application_list" placeholder="Select Application No" onkeydown="applicationOptions(this.value, 'application_list');" onfocus="applicationOptions(this.value, 'application_list');">
+              <code class="text-danger small font-weight-bold float-right" id="application_no_error" style="display: none;"></code>
+              <datalist id="application_list" style="display: none; max-height: 200px; overflow: auto;">
+                <!-- <?php //showApplicationList("") ?> -->
+              </datalist>
             </div>
             <div class="col col-md-1">Bill No:</div>
             <div class="col col-md-2">
@@ -144,21 +149,21 @@
             <hr class="col-md-12" style="padding: 0px;">
           </div>
 
-        <div class="row col col-md-12">
-          <div id="save_button" class="col col-md-2 form-group float-right">
-            <label class="font-weight-bold" for=""></label>
-            <button class="btn btn-success form-control font-weight-bold" onclick="addInvoice();">Savecfg</button>
-          </div>
-          <div id="new_invoice_button" class="col col-md-2 form-group float-right" style="display: none;">
-            <label class="font-weight-bold" for=""></label>
-            <button class="btn btn-primary form-control font-weight-bold" onclick="location.reload();;">New Invoice</button>
-          </div>
-          <div id="print_button" class="col col-md-2 form-group float-right" style="display: none;">
-            <label class="font-weight-bold" for=""></label>
-            <button class="btn btn-warning form-control font-weight-bold" onclick="printInvoice(document.getElementById('invoice_number').value);">Print</button>
-          </div>
-          <div class="col col-md-4 form-group"></div>
-          <!-- <div class="col col-md-2 form-group float-right">
+          <div class="row col col-md-12">
+            <div id="save_button" class="col col-md-2 form-group float-right">
+              <label class="font-weight-bold" for=""></label>
+              <button class="btn btn-success form-control font-weight-bold" onclick="addInvoice();">Savecfg</button>
+            </div>
+            <div id="new_invoice_button" class="col col-md-2 form-group float-right" style="display: none;">
+              <label class="font-weight-bold" for=""></label>
+              <button class="btn btn-primary form-control font-weight-bold" onclick="location.reload();;">New Invoice</button>
+            </div>
+            <div id="print_button" class="col col-md-2 form-group float-right" style="display: none;">
+              <label class="font-weight-bold" for=""></label>
+              <button class="btn btn-warning form-control font-weight-bold" onclick="printInvoice(document.getElementById('invoice_number').value);">Print</button>
+            </div>
+            <div class="col col-md-4 form-group"></div>
+            <!-- <div class="col col-md-2 form-group float-right">
             <label class="font-weight-bold" for="">Paid Amount :</label>
             <input type="text" class="form-control" name="total_discount" onkeyup="getChange(this.value);">
           </div>
@@ -168,13 +173,29 @@
           </div> -->
           </div>
 
-        <div id="invoice_acknowledgement" class="col-md-12 h5 text-success font-weight-bold text-center" style="font-family: sans-serif;" ></div>
+          <div id="invoice_acknowledgement" class="col-md-12 h5 text-success font-weight-bold text-center" style="font-family: sans-serif;"></div>
 
-          </div>
-          <!-- form content end -->
-          <hr style="border-top: 2px solid #ff5252;">
         </div>
+        <!-- form content end -->
+        <hr style="border-top: 2px solid #ff5252;">
       </div>
+    </div>
+
+    <?php
+    // function showApplicationList($text)
+    // {
+    //   require 'php/db_connection.php';
+    //   if ($con) {
+    //     if ($text == "")
+    //       $query = "SELECT * FROM application";
+    //     else
+    //       $query = "SELECT * FROM application WHERE UPPER(NAME) LIKE '%$text%'";
+    //     $result = mysqli_query($con, $query);
+    //     while ($row = mysqli_fetch_array($result))
+    //       echo '<option value="' . $row['id'] . '" id="' . $row['id'] . '">' . $row['id'] . '</option>';
+    //   }
+    // }
+    ?>
 </body>
 
 </html>
