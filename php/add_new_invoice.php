@@ -277,9 +277,9 @@ function addNewInvoice()
       }
     }
     if ($medInsertFlag) {
-      echo ($result) ? "Invoice saved..." : "falied to add invoice...";
+      echo ($result) ? "Invoice saved..." : "Falied to add invoice...";
     } else {
-      echo "falied to add invoice...";
+      echo "Falied to add invoice...";
     }
   }
 }
