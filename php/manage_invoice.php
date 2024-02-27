@@ -15,20 +15,20 @@ if (isset($_GET["action"]) && $_GET["action"] == "search")
 
 if (isset($_GET["action"]) && $_GET["action"] == "print_invoice")
   printInvoice($_GET["invoice_number"]);
+  // printInvoice($_GET["id"]);
+
 
 function showInvoices()
 {
   require "db_connection.php";
   if ($con) {
     $seq_no = 0;
-    // $query = "SELECT * FROM invoices INNER JOIN customers ON invoices.CUSTOMER_ID = customers.ID";
-    // $query = "SELECT ap.*,rl.* FROM application ap JOIN relation rl ON ap.relation_desig_id = rl.relation_id ORDER BY ap.id ASC";
-    $query = "SELECT a.*, m.price FROM application a JOIN bills b ON a.id = b.application_id JOIN medicines_list m ON b.id = m.bill_id";
+        $query = "SELECT a.*, SUM(m.price) AS total_price FROM application a JOIN bills b ON a.id = b.application_id JOIN medicines_list m ON b.id = m.bill_id GROUP BY a.id";
 
     $result = mysqli_query($con, $query);
 
     while ($row = mysqli_fetch_array($result)) {
-      var_dump($row['id']);
+      // var_dump($row['id']);
       $seq_no++;
       showInvoiceRow($seq_no, $row);
     }
@@ -44,7 +44,7 @@ function showInvoiceRow($seq_no, $row)
     <td><?php echo $row['applicant_name']; ?></td>
     <td><?php echo $row['date_from']; ?></td>
     <td><?php echo $row['date_to']; ?></td>
-    <td><?php echo $row['price']; ?></td>
+    <td><?php echo $row['total_price']; ?></td>
 
     <td>
       <button class="btn btn-warning btn-sm" onclick="printInvoice(<?php echo $row['id']; ?>);">
@@ -82,22 +82,23 @@ function printInvoice($invoice_number)
 {
   require "db_connection.php";
   if ($con) {
-    $query = "SELECT * FROM sales INNER JOIN customers ON sales.CUSTOMER_ID = customers.ID WHERE INVOICE_NUMBER = $invoice_number";
-    $result = mysqli_query($con, $query);
-    $row = mysqli_fetch_array($result);
-    $customer_name = $row['NAME'];
-    $address = $row['ADDRESS'];
-    $contact_number = $row['CONTACT_NUMBER'];
-    $doctor_name = $row['DOCTOR_NAME'];
-    $doctor_address = $row['DOCTOR_ADDRESS'];
+    // $query = "SELECT * FROM sales INNER JOIN customers ON sales.CUSTOMER_ID = customers.ID WHERE INVOICE_NUMBER = $invoice_number";
+    // $result = mysqli_query($con, $query);
+    // $row = mysqli_fetch_array($result);
+    // $customer_name = $row['NAME'];
+    // $address = $row['ADDRESS'];
+    // $contact_number = $row['CONTACT_NUMBER'];
+    // $doctor_name = $row['DOCTOR_NAME'];
+    // $doctor_address = $row['DOCTOR_ADDRESS'];
 
-    $query = "SELECT * FROM invoices WHERE INVOICE_NUMBER = $invoice_number";
-    $result = mysqli_query($con, $query);
-    $row = mysqli_fetch_array($result);
-    $invoice_date = $row['INVOICE_DATE'];
-    $total_amount = $row['TOTAL_AMOUNT'];
-    $total_discount = $row['TOTAL_DISCOUNT'];
-    $net_total = $row['NET_TOTAL'];
+    // $query = "SELECT * FROM invoices WHERE INVOICE_NUMBER = $invoice_number";
+    // $result = mysqli_query($con, $query);
+    // $row = mysqli_fetch_array($result);
+    // $invoice_date = $row['INVOICE_DATE'];
+    // $total_amount = $row['TOTAL_AMOUNT'];
+    // $total_discount = $row['TOTAL_DISCOUNT'];
+    // $net_total = $row['NET_TOTAL'];
+    // $query = "SELECT * FROM a.id FROM application a"
   }
 
 ?>
@@ -196,7 +197,7 @@ function printInvoice($invoice_number)
           $seq_no = 0;
           $total = 0;
           // $query = "SELECT * FROM sales WHERE INVOICE_NUMBER = $invoice_number";
-          $query = "SELECT * FROM application a JOIN bills b ON a.id = b.application_id JOIN medicines_list ml ON b.id = ml.bill_id JOIN medicines m ON m.id = ml.medicine_id";   
+          $query = "SELECT * FROM application a JOIN bills b ON a.id = b.application_id JOIN medicines_list ml ON b.id = ml.bill_id JOIN medicines m ON m.id = ml.medicine_id WHERE a.id = $invoice_number";   
           $result = mysqli_query($con, $query);
           while ($row = mysqli_fetch_array($result)) {
             $seq_no++;
