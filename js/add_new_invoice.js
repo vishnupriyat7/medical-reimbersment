@@ -29,7 +29,6 @@ function addRow() {
   };
   xhttp.open("GET", "php/add_new_invoice.php?action=add_row&row_id=" + cls.value + "&row_number=" + addRow.counter, true);
   xhttp.send();
-  //alert(addRow.counter);
   addRow.counter++;
   rows++;
 }
@@ -42,16 +41,6 @@ function removeRow(row_id) {
     rows--;
   }
 }
-
-// function getInvoiceNumber() {
-//   var xhttp = new XMLHttpRequest();
-//   xhttp.onreadystatechange = function() {
-//     if(xhttp.readyState = 4 && xhttp.status == 200)
-//       document.getElementById("bill_no").value = xhttp.responseText;
-//   };
-//   xhttp.open("GET", "php/add_new_invoice.php?action=current_invoice_number", true);
-//   xhttp.send();
-// }
 
 function medicineOptions(text, id) {
   var xhttp = new XMLHttpRequest();
@@ -73,51 +62,11 @@ function applicationOptions(text, id) {
   xhttp.send();
 }
 
-// function fillFields(medicine_name, id) {
-//   fill(medicine_name, 'batch_id_' + id, 'BATCH_ID');
-//   fill(medicine_name, 'available_quantity_' + id, 'QUANTITY');
-//   fill(medicine_name, 'expiry_date_' + id, 'EXPIRY_DATE');
-//   fill(medicine_name, 'mrp_' + id, 'MRP');
-//   getTotal(id);
-//   var expiry_date = document.getElementById('expiry_date_' + id).value;
-//   //alert(expiry_date);
-//   if(checkExpiry(expiry_date, 'medicine_name_error_' + id) != -1)
-//     document.getElementById("medicine_name_error_" + id).style.display = "none";
-//   else
-//     return;
-//   var available_quantity = document.getElementById("available_quantity_" + id).value;
-//   if(!checkAvailableQuantity(available_quantity, id))
-//     return;
-//   document.getElementById("medicine_name_" + id).blur();
-// }
 function fillFields(medicine_name, id) {
-  // fill(medicine_name, 'batch_id_' + id, 'BATCH_ID');
-  // fill(medicine_name, 'available_quantity_' + id, 'QUANTITY');
-  // fill(medicine_name, 'expiry_date_' + id, 'EXPIRY_DATE');
-  // fill(medicine_name, 'mrp_' + id, 'MRP');
   fill(medicine_name, 'chemical_' + id, 'GENERIC_NAME');
-  // getTotal(id);
-  // var expiry_date = document.getElementById('expiry_date_' + id).value;
-  //alert(expiry_date);
-  // if(checkExpiry(expiry_date, 'medicine_name_error_' + id) != -1)
-  //   document.getElementById("medicine_name_error_" + id).style.display = "none";
-  // else
-  //   return;
-  // var available_quantity = document.getElementById("available_quantity_" + id).value;
-  // if(!checkAvailableQuantity(available_quantity, id))
-  //   return;
   document.getElementById("medicine_name_" + id).blur();
 }
 
-// function fill(name, field_name, column) {
-//   var xhttp = new XMLHttpRequest();
-//   xhttp.onreadystatechange = function() {
-//     if(xhttp.readyState = 4 && xhttp.status == 200)
-//       document.getElementById(field_name).value = xhttp.responseText;
-//   };
-//   xhttp.open("GET", "php/add_new_invoice.php?action=fill&name=" + name + "&column=" + column, false);
-//   xhttp.send();
-// }
 function fill(name, field_name, column) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
@@ -129,34 +78,15 @@ function fill(name, field_name, column) {
 }
 
 function getTotal(id) {
-  // var mrp = document.getElementById("total_" + id).value;
-  // var qty = document.getElementById("quantity_" + id).value;
-  // if (!checkQuantity(qty, 'quantity_error_' + id)) return;
-  // var discount = document.getElementById("discount_" + id).value;
-  // if (!checkValue(discount, 'discount_error_' + id)) return;
-  // var total = document.getElementById("total_" + id).value;
-  // total.value = mrp * qty - (discount * mrp * qty / 100);
-
-  // net total , discount and total Amount
   var parent = document.getElementById('invoice_medicine_list_div');
   var row_count = parent.childElementCount;
   var medicine_info = parent.children;
   var total_amount = 0;
-  // var total_discount = 0;
-  // var net_total = 0;
-  // console.log(medicine_info[1].children[2].children[0]);return;
   for (var i = 1; i < row_count; i++) {
-    // qty = Number.parseInt(medicine_info[i].children[0].children[4].children[0].value);
     mrp = Number.parseFloat(medicine_info[i].children[2].children[0].value);
-    // discount = (qty * mrp * Number.parseFloat(medicine_info[i].children[0].children[6].children[0].value)) / 100;
-
     total_amount += mrp;
-    // total_discount += discount;
   }
-  // net_total = total_amount - total_discount;
   document.getElementById("total_amount").value = total_amount;
-  // document.getElementById("total_discount").value = total_discount;
-  // document.getElementById("net_total").value = net_total;
 }
 
 function checkAvailableQuantity(value, id) {
@@ -171,7 +101,6 @@ function checkAvailableQuantity(value, id) {
   if (Number.parseInt(xhttp.responseText) == 0) {
     document.getElementById("medicine_name_error_" + id).style.display = "block";
     document.getElementById("medicine_name_error_" + id).innerHTML = "Out of Stock!";
-    //alert("medicine_name_error_" + id);
     return -1;
   }
   else if (value > Number.parseInt(xhttp.responseText)) {
@@ -195,28 +124,24 @@ function isCustomer(name, contact_number) {
   };
   xhttp.open("GET", "php/add_new_invoice.php?action=is_customer&name=" + name + "&contact_number=" + contact_number, false);
   xhttp.send();
-  //alert(xhttp.responseText);
-
-
-  function isBill(bill_no, bill_dt) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-      if (xhttp.readyState = 4 && xhttp.status == 200)
-        xhttp.responseText;
-    };
-    xhttp.open("GET", "php/add_new_invoice.php?action=is_bill&name=" + name + "&contact_number=" + contact_number, false);
-    xhttp.send();
-    //alert(xhttp.responseText);
-    return xhttp.responseText;
-  } return xhttp.responseText;
 }
+
+function isBill(bill_no, bill_dt) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (xhttp.readyState = 4 && xhttp.status == 200)
+      xhttp.responseText;
+  };
+  xhttp.open("GET", "php/add_new_invoice.php?action=is_bill&name=" + name + "&contact_number=" + contact_number, false);
+  xhttp.send();
+  return xhttp.responseText;
+} return xhttp.responseText;
 
 function isInvoiceExist(invoice_number) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (xhttp.readyState = 4 && xhttp.status == 200)
       xhttp.responseText;
-    //alert(xhttp.responseText);
   };
   xhttp.open("GET", "php/add_new_invoice.php?action=is_invoice&invoice_number=" + invoice_number, false);
   xhttp.send();
@@ -231,7 +156,6 @@ function isMedicine(name) {
   };
   xhttp.open("GET", "php/add_new_invoice.php?action=is_medicine&name=" + name, false);
   xhttp.send();
-  //alert(xhttp.responseText);
   return xhttp.responseText;
 }
 
@@ -241,11 +165,6 @@ function addInvoice() {
   var billdate = document.getElementById('bill_dt');
   if (!notNull(billno.value, "bill_no"))
     billno.focus();
-  // else if(isCustomer(customers_name.value, customers_contact_number.value) == "true") {
-  //   document.getElementById("billno_error").style.display = "block";
-  //   document.getElementById("billno_error").innerHTML = "Customer doesn't exists!";
-  //   customers_name.focus();
-  // }
   else if (isInvoiceExist(billno.value) == "true")
     document.getElementById("invoice_acknowledgement").innerHTML = "Alreay saved Invoice!";
   else if (!checkDate(billdate.value, 'date_error')) {
@@ -254,56 +173,17 @@ function addInvoice() {
     var parent = document.getElementById('invoice_medicine_list_div');
     var row_count = parent.childElementCount;
     var medicine_info = parent.children;
-
     var medicines = new Array(row_count - 1);
-    // medicine_info[i].children[2].children[0].value
     for (var i = 1; i < row_count; i++) {
-      //alert(i);
       var elements_count = medicine_info[i].childElementCount;
       var elements = medicine_info[i].children;
-
       var medicine_name = elements[0].children[0];
       var medicine_name_error = elements[0].children[1];
-
-      //var packing = elements[0].children[1].children[0];
-      //var pack_error = elements[0].children[1].children[1];
-
       var chemical_name = elements[1].children[0];
-      //var batch_id_error = elements[0].children[2].children[1];
-
       var price = elements[2].children[0];
       var remark = elements[3].children[0];
-      // if(medicine_name.value.trim() != ''){
-      // var el=$("#SelectColor")[0];
-      // var opSelected = medicine_name.querySelector(`[value="${elements.value}"]`);
-      // alert(opSelected.getAttribute('id'));
-      //  }
-      // console.log(opSelected);
-      // console.log(medicine_name.value);
-      // console.log(chemical_name.value);
-      // console.log(price.value);return;
-      //var expiry_date_error = elements[0].children[3].children[1];
-
-      // var remark = elements[0].children[3].children[0];
-      // var quantity_error = elements[0].children[4].children[1];
-
-      // var mrp = elements[0].children[5].children[0];
-      //var mrp_error = elements[0].children[5].children[1];
-
-      // var discount = elements[0].children[6].children[0];
-      // var discount_error = elements[0].children[6].children[1];
-
-      // var total = elements[0].children[7].children[0];
-
       var total_amount = document.getElementById("total_amount");
-      // var total_discount = document.getElementById("total_discount");
-      // var net_total = document.getElementById("net_total");
       var flag = false;
-      //alert(quantity.getAttribute('id').slice(9, 10));
-
-      //alert(medicine_name.value + " " + batch_id.value + " " + expiry_date.value + " " + quantity.value + " " + mrp.value + " " + discount.value + " " +total.value);
-      // var isAvailable = checkAvailableQuantity(quantity.value, quantity.getAttribute('id').slice(9, 10))
-      //alert(medicine_name.value);
       if (!notNull(medicine_name.value, medicine_name_error.getAttribute('id')))
         medicine_name.focus();
 
@@ -312,35 +192,8 @@ function addInvoice() {
         medicine_name_error.innerHTML = "Medicine doesn't exists!";
         medicine_name.focus();
       }
-
-      // else if (!checkExpiry(expiry_date.value, medicine_name_error.getAttribute('id')) || checkExpiry(expiry_date.value, medicine_name_error.getAttribute('id')) == -1)
-      //   medicine_name.focus();
-
-      // else if (isAvailable == -1) {
-      //   medicine_name_error.style.display = "block";
-      //   medicine_name.focus();
-      // }
-
-      // else if (!checkQuantity(quantity.value, quantity_error.getAttribute('id')))
-      //   quantity.focus();
-
-      // else if (quantity.value == 0) {
-      //   quantity_error.style.display = "block";
-      //   quantity_error.innerHTML = "Increase quantity or remover row!";
-      //   quantity.focus();
-      // }
-
-      // else if (isAvailable == -2) {
-      //   quantity_error.style.display = "block";
-      //   quantity.focus();
-      // }
-
-      // else if (!checkValue(discount.value, discount_error.getAttribute('id')))
-      //   discount.focus();
-
       else {
         flag = true;
-        //alert("row " + i + "perfect...");
         medicines[i - 1] = new MedicineInfo(medicine_name.value, chemical_name.value, price.value, remark.value);
       }
       console.log(medicines);
@@ -348,12 +201,6 @@ function addInvoice() {
         return false;
     }
     addNewInvoice(aplcnno.value, billno.value, billdate.value, medicines);
-    for (var i = 0; i < row_count - 1; i++) {
-      updateBillMedicine(medicines[i].name, medicines[i].chemical_name, medicines[i].price, medicines[i].remark);
-      // updateStock(medicines[i].name, medicines[i].batch_id, medicines[i].quantity);
-      // addSale(customers_name.value, customers_contact_number.value, invoice_number.value, medicines[i].name, medicines[i].batch_id, medicines[i].expiry_date, medicines[i].quantity, medicines[i].mrp, medicines[i].discount, medicines[i].total);
-    }
-    // addNewInvoice(customers_name.value, customers_contact_number.value, invoice_date.value, total_amount.value, total_discount.value, net_total.value);
     document.getElementById("save_button").style.display = "none";
     document.getElementById("new_invoice_button").style.display = "block";
     document.getElementById("print_button").style.display = "block";
@@ -366,7 +213,6 @@ function updateStock(name, batch_id, quantity) {
   xhttp.onreadystatechange = function () {
     if (xhttp.readyState = 4 && xhttp.status == 200)
       xhttp.responseText;
-    //alert("Stock result : " + xhttp.responseText);
   };
   xhttp.open("GET", "php/add_new_invoice.php?action=update_stock&name=" + name + "&batch_id=" + batch_id + "&quantity=" + quantity, true);
   xhttp.send();
@@ -377,14 +223,12 @@ function addSale(customers_name, customers_contact_number, invoice_number, medic
   xhttp.onreadystatechange = function () {
     if (xhttp.readyState = 4 && xhttp.status == 200)
       xhttp.responseText;
-    //alert("Sales result : " + xhttp.responseText);
   };
   xhttp.open("GET", "php/add_new_invoice.php?action=add_sale&customers_name=" + customers_name + "&customers_contact_number=" + customers_contact_number + "&invoice_number=" + invoice_number + "&medicine_name=" + medicine_name + "&batch_id=" + batch_id + "&expiry_date=" + expiry_date + "&quantity=" + quantity + "&mrp=" + mrp + "&discount=" + discount + "&total=" + total, true);
   xhttp.send();
 }
 
 function addNewInvoice(aplcn_no, bill_no, bill_dt, list_medicine) {
-  // alert(JSON.stringify(list_medicine));return false;
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (xhttp.readyState = 4 && xhttp.status == 200)
