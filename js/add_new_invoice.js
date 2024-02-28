@@ -124,18 +124,19 @@ function isCustomer(name, contact_number) {
   };
   xhttp.open("GET", "php/add_new_invoice.php?action=is_customer&name=" + name + "&contact_number=" + contact_number, false);
   xhttp.send();
+  return xhttp.responseText;
 }
 
-function isBill(bill_no, bill_dt) {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function () {
-    if (xhttp.readyState = 4 && xhttp.status == 200)
-      xhttp.responseText;
-  };
-  xhttp.open("GET", "php/add_new_invoice.php?action=is_bill&name=" + name + "&contact_number=" + contact_number, false);
-  xhttp.send();
-  return xhttp.responseText;
-} return xhttp.responseText;
+  function isBill(bill_no, bill_dt) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      if (xhttp.readyState = 4 && xhttp.status == 200)
+        xhttp.responseText;
+    };
+    xhttp.open("GET", "php/add_new_invoice.php?action=is_bill&name=" + name + "&contact_number=" + contact_number, false);
+    xhttp.send();
+    return xhttp.responseText;
+  } 
 
 function isInvoiceExist(invoice_number) {
   var xhttp = new XMLHttpRequest();
@@ -186,7 +187,6 @@ function addInvoice() {
       var flag = false;
       if (!notNull(medicine_name.value, medicine_name_error.getAttribute('id')))
         medicine_name.focus();
-
       else if (isMedicine(medicine_name.value) == "false") {
         medicine_name_error.style.display = "block";
         medicine_name_error.innerHTML = "Medicine doesn't exists!";
