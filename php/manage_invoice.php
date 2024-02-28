@@ -15,7 +15,7 @@ if (isset($_GET["action"]) && $_GET["action"] == "search")
 
 if (isset($_GET["action"]) && $_GET["action"] == "print_invoice")
   printInvoice($_GET["invoice_number"]);
-  // printInvoice($_GET["id"]);
+// printInvoice($_GET["id"]);
 
 
 function showInvoices()
@@ -23,7 +23,7 @@ function showInvoices()
   require "db_connection.php";
   if ($con) {
     $seq_no = 0;
-        $query = "SELECT a.*, SUM(m.price) AS total_price FROM application a JOIN bills b ON a.id = b.application_id JOIN medicines_list m ON b.id = m.bill_id GROUP BY a.id";
+    $query = "SELECT a.*, SUM(m.price) AS total_price FROM application a JOIN bills b ON a.id = b.application_id JOIN medicines_list m ON b.id = m.bill_id GROUP BY a.id";
 
     $result = mysqli_query($con, $query);
 
@@ -176,13 +176,6 @@ function printInvoice($invoice_number)
       <table class="table table-bordered table-striped table-hover" id="purchase_report_div">
         <thead>
           <tr>
-            <!-- <th>SL</th>
-            <th>Medicine Name</th>
-            <th>Expiry Date</th>
-            <th>Quantity</th>
-            <th>MRP</th>
-            <th>Discount</th>
-            <th>Total</th> -->
             <th style="width: 5%;">Sl.No</th>
             <th style="width: 10%;">Bill No</th>
             <th style="width: 10%;">Bill Date</th>
@@ -191,46 +184,65 @@ function printInvoice($invoice_number)
             <th style="width: 10%;">Price</th>
             <th style="width: 10%;">Bill Total</th>
           </tr>
+          <tr></tr> <!-- Empty row for spacing -->
         </thead>
         <tbody>
           <?php
-          $seq_no = 0;
-          $total = 0;
-          // $query = "SELECT * FROM sales WHERE INVOICE_NUMBER = $invoice_number";
-          $query = "SELECT * FROM application a JOIN bills b ON a.id = b.application_id JOIN medicines_list ml ON b.id = ml.bill_id JOIN medicines m ON m.id = ml.medicine_id WHERE a.id = $invoice_number";   
+
+          $total_bill_total = 0; // Variable to store the total sum of bill totals
+          $query = "SELECT DISTINCT b.bill_no, b.bill_date, ml.total
+              FROM application a 
+              JOIN bills b ON a.id = b.application_id 
+              JOIN (SELECT bill_id, SUM(price) AS total FROM medicines_list GROUP BY bill_id) ml ON b.id = ml.bill_id 
+              WHERE a.id = $invoice_number";
           $result = mysqli_query($con, $query);
+
           while ($row = mysqli_fetch_array($result)) {
-            $seq_no++;
-          ?>
-            <tr>
-              <td><?php echo $seq_no; ?></td>
-              <td><?php echo $row['bill_no']; ?></td>
-              <td><?php echo $row['bill_date']; ?></td>
-              <td><?php echo $row['NAME']; ?></td>
-              <td><?php echo $row['GENERIC_NAME']; ?></td>
-              <!-- <td><?php echo $row['DISCOUNT'] . "%"; ?></td> -->
-              <td><?php echo $row['price']; ?></td>
-              <td><?php echo $row['TOTAL']; ?></td>
-            </tr>
-          <?php
+            // Query to get medicines for the current bill
+            $bill_no = $row['bill_no'];
+            $medicines_query = "SELECT m.NAME AS medicine_name, m.GENERIC_NAME AS generic_name, ml.price FROM medicines_list ml JOIN medicines m ON ml.medicine_id = m.id JOIN bills b ON ml.bill_id = b.id WHERE b.bill_no = $bill_no";
+            $medicines_result = mysqli_query($con, $medicines_query);
+
+            // Count the number of medicines for rowspan
+            $num_medicines = mysqli_num_rows($medicines_result);
+            $seq_no = 0; // Reset sequence number for each bill
+
+            // Output rows for medicines
+            while ($medicine_row = mysqli_fetch_array($medicines_result)) {
+              if ($seq_no == 0) {
+                echo '<tr>';
+                echo '<td rowspan="' . $num_medicines . '">' . ++$seq_no . '</td>'; // Increment the sequence number for each bill
+                echo '<td rowspan="' . $num_medicines . '">' . $row['bill_no'] . '</td>'; // Output Bill No
+                echo '<td rowspan="' . $num_medicines . '">' . $row['bill_date'] . '</td>'; // Output Bill Date
+                echo '<td>' . $medicine_row['medicine_name'] . '</td>'; // Output Medicine Name
+                echo '<td>' . $medicine_row['generic_name'] . '</td>'; // Output Chemical/Pharmacological Name
+                echo '<td>' . $medicine_row['price'] . '</td>'; // Output Price
+                echo '<td rowspan="' . $num_medicines . '">' . $row['total'] . '</td>'; // Output Bill Total
+                echo '</tr>';
+              } else {
+                echo '<tr>';
+                echo '<td>' . $medicine_row['medicine_name'] . '</td>'; // Output Medicine Name
+                echo '<td>' . $medicine_row['generic_name'] . '</td>'; // Output Chemical/Pharmacological Name
+                echo '<td>' . $medicine_row['price'] . '</td>'; // Output Price
+                echo '</tr>';
+              }
+              $seq_no++;
+            }
+            $total_bill_total += $row['total'];
           }
           ?>
         </tbody>
         <tfoot class="font-weight-bold">
-          <!-- <tr style="text-align: right; font-size: 18px;">
-            <td colspan="6">&nbsp;Total Amount</td>
-            <td><?php echo $total_amount; ?></td>
-          </tr>
-          <tr style="text-align: right; font-size: 18px;">
-            <td colspan="6">&nbsp;Total Discount</td>
-            <td><?php echo $total_discount; ?></td>
-          </tr> -->
           <tr style="text-align: right; font-size: 22px;">
-            <td colspan="6" style="color: green;">&nbsp;Net Amount</td>
-            <td class="text-primary"><?php echo $net_total; ?></td>
+            <td colspan="6" style="color: green;">&nbsp;Grand Total</td>
+            <td class="text-primary"><?php echo $total_bill_total; ?></td>
           </tr>
         </tfoot>
       </table>
+
+
+
+
     </div>
     <div class="col-md-1"></div>
   </div>
