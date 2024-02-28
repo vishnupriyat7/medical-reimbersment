@@ -72,7 +72,8 @@
               createSection1('manage_medicine.php', 'Total Medicine', 'medicines');
               // createSection1('manage_medicine_stock.php?out_of_stock', 'Out of Stock', 'medicines_stock');
               // createSection1('manage_medicine_stock.php?expired', 'Expired', 'medicines_stock');
-              createSection1('manage_invoice.php', 'Total Invoice', 'invoices');
+              createSection1('manage_invoice.php', 'Total Invoice', 'bills');
+              createSection1('manage_application.php', 'Total Application', 'application');
             ?>
 
           </div>
@@ -136,6 +137,7 @@
                 </div>
               ';
             }
+              createSection2('handshake', 'new_application.php', 'Create New Application');
             createSection2('address-card', 'new_invoice.php', 'Create New Invoice');
             // createSection2('handshake', 'add_customer.php', 'Add New Customer');
             createSection2('shopping-bag', 'add_medicine.php', 'Add New Medicine');

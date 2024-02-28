@@ -152,7 +152,7 @@
           <div class="row col col-md-12">
             <div id="save_button" class="col col-md-2 form-group float-right">
               <label class="font-weight-bold" for=""></label>
-              <button class="btn btn-success form-control font-weight-bold" onclick="addInvoice();">Savecfg</button>
+              <button class="btn btn-success form-control font-weight-bold" onclick="addInvoice();">Save</button>
             </div>
             <div id="new_invoice_button" class="col col-md-2 form-group float-right" style="display: none;">
               <label class="font-weight-bold" for=""></label>

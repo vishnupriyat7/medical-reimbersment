@@ -209,35 +209,41 @@ function printInvoice($invoice_number)
             $num_medicines = mysqli_num_rows($medicines_result);
             $seq_no = 0; // Reset sequence number for each bill
 
+
+            // Initialize bill total for each bill
+            $bill_total = 0;
+
             // Output rows for medicines
             while ($medicine_row = mysqli_fetch_array($medicines_result)) {
               if ($seq_no == 0) {
                 echo '<tr>';
-                echo '<td rowspan="' . $num_medicines . '">' . ++$seq_no . '</td>'; // Increment the sequence number for each bill
-                echo '<td rowspan="' . $num_medicines . '">' . $row['bill_no'] . '</td>'; // Output Bill No
-                echo '<td rowspan="' . $num_medicines . '">' . $row['bill_date'] . '</td>'; // Output Bill Date
+                echo '<td rowspan="' . $num_medicines . '" style="text-align: center; vertical-align: middle;">' . ++$seq_no . '</td>'; // Increment the sequence number for each bill
+                echo '<td rowspan="' . $num_medicines . '"style="text-align: center; vertical-align: middle;" >' . $row['bill_no'] . '</td>'; // Output Bill No
+                echo '<td rowspan="' . $num_medicines . '"style="text-align: center; vertical-align: middle;">' . $row['bill_date'] . '</td>'; // Output Bill Date
                 echo '<td>' . $medicine_row['medicine_name'] . '</td>'; // Output Medicine Name
                 echo '<td>' . $medicine_row['generic_name'] . '</td>'; // Output Chemical/Pharmacological Name
-                echo '<td>' . $medicine_row['price'] . '</td>'; // Output Price
-                echo '<td rowspan="' . $num_medicines . '">' . $row['total'] . '</td>'; // Output Bill Total
+                echo '<td style="text-align: center; vertical-align: middle;">' . $medicine_row['price'] . '</td>'; // Output Price
+                echo '<td rowspan="' . $num_medicines . '"style="text-align: center; vertical-align: middle;">' . $row['total'] . '</td>'; // Output Bill Total
                 echo '</tr>';
+                
               } else {
                 echo '<tr>';
                 echo '<td>' . $medicine_row['medicine_name'] . '</td>'; // Output Medicine Name
                 echo '<td>' . $medicine_row['generic_name'] . '</td>'; // Output Chemical/Pharmacological Name
-                echo '<td>' . $medicine_row['price'] . '</td>'; // Output Price
+                echo '<td style="text-align: center; vertical-align: middle;">' . $medicine_row['price'] . '</td>'; // Output Price
                 echo '</tr>';
               }
               $seq_no++;
+              $bill_total += $medicine_row['price'];
             }
-            $total_bill_total += $row['total'];
+            $total_bill_total += $bill_total;
           }
           ?>
         </tbody>
         <tfoot class="font-weight-bold">
           <tr style="text-align: right; font-size: 22px;">
             <td colspan="6" style="color: green;">&nbsp;Grand Total</td>
-            <td class="text-primary"><?php echo $total_bill_total; ?></td>
+            <td class="text-primary" style="text-align: center; vertical-align: middle;"><?php echo  $total_bill_total; ?></td>
           </tr>
         </tfoot>
       </table>
