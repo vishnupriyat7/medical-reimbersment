@@ -239,10 +239,7 @@ function printInvoice($invoice_number)
           </tr>
         </tfoot>
       </table>
-
-
-
-
+      
     </div>
     <div class="col-md-1"></div>
   </div>
