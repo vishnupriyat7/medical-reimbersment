@@ -24,9 +24,7 @@ function showInvoices()
   if ($con) {
     $seq_no = 0;
     $query = "SELECT a.*, SUM(m.price) AS total_price FROM application a JOIN bills b ON a.id = b.application_id JOIN medicines_list m ON b.id = m.bill_id GROUP BY a.id";
-
     $result = mysqli_query($con, $query);
-
     while ($row = mysqli_fetch_array($result)) {
       // var_dump($row['id']);
       $seq_no++;
@@ -173,6 +171,10 @@ function printInvoice($invoice_number)
   <div class="row pr-1 pl-1">
     <div class="col-md-1"></div>
     <div class="col-md-10 table-responsive">
+
+      <?php
+      $current_date = date("d-m-Y"); // Format: day-month-year (d-m-Y)
+      ?>
       <table class="table table-bordered table-striped table-hover" id="purchase_report_div">
         <thead>
           <tr>
@@ -239,7 +241,22 @@ function printInvoice($invoice_number)
           </tr>
         </tfoot>
       </table>
-      
+
+      <div style="margin-top: 50px; display: flex; justify-content: space-between; align-items: center;">
+        <div style="text-align: left;">
+          <p>PLACE : TRIVANDRUM</p>
+          <p>DATE  : <?php echo $current_date; ?> </p>
+
+        </div>
+        <div style="text-align: center;">
+          <p>SEAL</p>
+        </div>
+        <div style="text-align: right;">
+          <p>NAME & DESIGNATION OF </p>
+          <p>THE AUTHORIZED MEDICAL ATTENDANT</p>
+        </div>
+      </div>
+
     </div>
     <div class="col-md-1"></div>
   </div>
