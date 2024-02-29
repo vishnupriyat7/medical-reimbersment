@@ -74,38 +74,6 @@ function createMedicineInfoRow()
   $row_id = $_GET['row_id'];
   $row_number = $_GET['row_number'];
 ?>
-  <!-- <div class="row col col-md-12">
-      <div class="col-md-2">
-        <input id="medicine_name_<?php echo $row_number; ?>" name="medicine_name" class="form-control" list="medicine_list_<?php echo $row_number; ?>" placeholder="Select Medicine" onkeydown="medicineOptions(this.value, 'medicine_list_<?php echo $row_number; ?>');" onfocus="medicineOptions(this.value, 'medicine_list_<?php echo $row_number; ?>');" onchange="fillFields(this.value, '<?php echo $row_number; ?>');">
-        <code class="text-danger small font-weight-bold float-right" id="medicine_name_error_<?php echo $row_number; ?>" style="display: none;"></code>
-        <datalist id="medicine_list_<?php echo $row_number; ?>" style="display: none; max-height: 200px; overflow: auto;">
-          <?php showMedicineList("") ?>
-        </datalist>
-      </div>
-      <div class="col col-md-2"><input type="text" class="form-control" id="batch_id_<?php echo $row_number; ?>" disabled></div>
-      <div class="col col-md-1"><input type="number" class="form-control" id="available_quantity_<?php echo $row_number; ?>" disabled></div>
-      <div class="col col-md-1"><input type="text" class="form-control" id="expiry_date_<?php echo $row_number; ?>" disabled></div>
-      <div class="col col-md-1">
-        <input type="number" class="form-control" id="quantity_<?php echo $row_number; ?>" value="0" onkeyup="getTotal('<?php echo $row_number; ?>');" onblur="checkAvailableQuantity(this.value, '<?php echo $row_number; ?>');">
-        <code class="text-danger small font-weight-bold float-right" id="quantity_error_<?php echo $row_number; ?>" style="display: none;"></code>
-      </div>
-      <div class="col col-md-1"><input type="number" class="form-control" id="mrp_<?php echo $row_number; ?>" onchange="getTotal('<?php echo $row_number; ?>');" disabled></div>
-      <div class="col col-md-1">
-        <input type="number" class="form-control" id="discount_<?php echo $row_number; ?>" value="0" onkeyup="getTotal('<?php echo $row_number; ?>');">
-        <code class="text-danger small font-weight-bold float-right" id="discount_error_<?php echo $row_number; ?>" style="display: none;"></code>
-      </div>
-      <div class="col col-md-1"><input type="number" class="form-control" id="total_<?php echo $row_number; ?>" disabled></div>
-      <div class="col col-md-2">
-        <button class="btn btn-primary" onclick="addRow();">
-          <i class="fa fa-plus"></i>
-        </button>
-        <button class="btn btn-danger"  onclick="removeRow('<?php echo $row_id ?>');">
-          <i class="fa fa-trash"></i>
-        </button>
-      </div>
-    </div> -->
-
-  <!-- <div class="row col col-md-12"> -->
   <div class="col-md-2">
     <input id="medicine_name_<?php echo $row_number; ?>" name="medicine_name" class="form-control" list="medicine_list_<?php echo $row_number; ?>" placeholder="Select Medicine" onkeydown="medicineOptions(this.value, 'medicine_list_<?php echo $row_number; ?>');" onfocus="medicineOptions(this.value, 'medicine_list_<?php echo $row_number; ?>');" onchange="fillFields(this.value, '<?php echo $row_number; ?>');">
     <code class="text-danger small font-weight-bold float-right" id="medicine_name_error_<?php echo $row_number; ?>" style="display: none;"></code>
@@ -114,17 +82,6 @@ function createMedicineInfoRow()
     </datalist>
   </div>
   <div class="col col-md-3"><input type="text" class="form-control" id="chemical_<?php echo $row_number; ?>"></div>
-  <!-- <div class="col col-md-1"><input type="number" class="form-control" id="available_quantity_<?php echo $row_number; ?>" disabled></div> -->
-  <!-- <div class="col col-md-1"><input type="text" class="form-control" id="expiry_date_<?php echo $row_number; ?>" disabled></div> -->
-  <!-- <div class="col col-md-1">
-        <input type="number" class="form-control" id="quantity_<?php echo $row_number; ?>" value="0" onkeyup="getTotal('<?php echo $row_number; ?>');" onblur="checkAvailableQuantity(this.value, '<?php echo $row_number; ?>');">
-        <code class="text-danger small font-weight-bold float-right" id="quantity_error_<?php echo $row_number; ?>" style="display: none;"></code>
-      </div> -->
-  <!-- <div class="col col-md-1"><input type="number" class="form-control" id="mrp_<?php echo $row_number; ?>" onchange="getTotal('<?php echo $row_number; ?>');" disabled></div> -->
-  <!-- <div class="col col-md-1">
-        <input type="number" class="form-control" id="discount_<?php echo $row_number; ?>" value="0" onkeyup="getTotal('<?php echo $row_number; ?>');">
-        <code class="text-danger small font-weight-bold float-right" id="discount_error_<?php echo $row_number; ?>" style="display: none;"></code>
-      </div> -->
   <div class="col col-md-1"><input type="number" class="form-control" id="total_<?php echo $row_number; ?>" value="0" onkeyup="getTotal('<?php echo $row_number; ?>');"></div>
   <div class="col col-md-1"><input type="text" class="form-control" id="remark_<?php echo $row_number; ?>"></div>
   <div class="col col-md-2">
@@ -135,7 +92,6 @@ function createMedicineInfoRow()
       <i class="fa fa-trash"></i>
     </button>
   </div>
-  <!-- </div> -->
   <div class="col col-md-12">
     <hr class="col-md-12" style="padding: 0px;">
   </div>

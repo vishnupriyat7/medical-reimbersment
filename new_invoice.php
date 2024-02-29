@@ -152,16 +152,16 @@
           <div class="row col col-md-12">
             <div id="save_button" class="col col-md-2 form-group float-right">
               <label class="font-weight-bold" for=""></label>
-              <button class="btn btn-success form-control font-weight-bold" onclick="addInvoice();">Savecfg</button>
+              <button class="btn btn-success form-control font-weight-bold" onclick="addInvoice();">Save</button>
             </div>
             <div id="new_invoice_button" class="col col-md-2 form-group float-right" style="display: none;">
               <label class="font-weight-bold" for=""></label>
               <button class="btn btn-primary form-control font-weight-bold" onclick="location.reload();;">New Invoice</button>
             </div>
-            <div id="print_button" class="col col-md-2 form-group float-right" style="display: none;">
+            <!-- <div id="print_button" class="col col-md-2 form-group float-right" style="display: none;">
               <label class="font-weight-bold" for=""></label>
               <button class="btn btn-warning form-control font-weight-bold" onclick="printInvoice(document.getElementById('invoice_number').value);">Print</button>
-            </div>
+            </div> -->
             <div class="col col-md-4 form-group"></div>
             <!-- <div class="col col-md-2 form-group float-right">
             <label class="font-weight-bold" for="">Paid Amount :</label>

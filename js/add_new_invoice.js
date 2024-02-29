@@ -203,7 +203,7 @@ function addInvoice() {
     addNewInvoice(aplcnno.value, billno.value, billdate.value, medicines);
     document.getElementById("save_button").style.display = "none";
     document.getElementById("new_invoice_button").style.display = "block";
-    document.getElementById("print_button").style.display = "block";
+    // document.getElementById("print_button").style.display = "block";
   }
   return false;
 }
