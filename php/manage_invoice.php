@@ -1,12 +1,47 @@
 <?php
 if (isset($_GET["action"]) && $_GET["action"] == "delete") {
   require "db_connection.php";
-  $invoice_number = $_GET["id"];
-  $query = "DELETE FROM invoices WHERE INVOICE_ID = $invoice_number";
-  $result = mysqli_query($con, $query);
-  if (!empty($result))
-    showInvoices();
+  $invoice_number = $_GET["invoice_number"];
+  $selappln = "SELECT * FROM application WHERE id = $invoice_number";
+  $selqry = mysqli_query($con, $selappln);
+  if($selqry) {
+    // Select bills related to the application
+    $selbill = "SELECT * FROM bills WHERE application_id = $invoice_number";
+    $selbillqry = mysqli_query($con, $selbill);
+
+    if($selbillqry) {
+      // Loop through bills and delete related medicines_list records
+      while ($row = mysqli_fetch_assoc($selbillqry)) {
+        $bill_id = $row['id']; // Corrected column name
+        $delmedicine = "DELETE FROM medicines_list WHERE bill_id = $bill_id";
+        mysqli_query($con, $delmedicine);
+      }
+      // Delete bills related to the application
+      $delBillQuery = "DELETE FROM bills WHERE application_id = $invoice_number";
+      mysqli_query($con, $delBillQuery);
+    }
+    // Delete the application record
+    $delAppQuery = "DELETE FROM application WHERE id = $invoice_number";
+    mysqli_query($con, $delAppQuery);
+    // Check if any rows were affected
+    if (mysqli_affected_rows($con) > 0) {
+      // echo "Invoice deleted successfully.";
+      showInvoices();
+    } else {
+      echo "Error: Unable to delete invoice.";
+    }
+  } else {
+    echo "Error: Unable to fetch application details.";
+  }
+  mysqli_close($con);
 }
+//   $delAppQuery = "DELETE FROM application WHERE id = $invoice_number";
+//   mysqli_query($con, $delAppQuery);
+// Check if any rows were affected
+// var_dump($resultselappln);
+//   if (!empty($result))
+//     showInvoices();
+// }
 if (isset($_GET["action"]) && $_GET["action"] == "refresh")
   showInvoices();
 
@@ -97,18 +132,18 @@ function printInvoice($invoice_number)
     // $total_discount = $row['TOTAL_DISCOUNT'];
     // $net_total = $row['NET_TOTAL'];
     // $query = "SELECT * FROM a.id FROM application a"
-   
 
-    $query = "SELECT a.*, rl.* FROM application a JOIN relation rl ON a.id = rl.relation_id";
+
+    $query = "SELECT a.*, rl.* FROM application a JOIN relation rl ON a.relation_desig_id = rl.relation_id WHERE a.id = '$invoice_number'";
     $result = mysqli_query($con, $query);
     $row = mysqli_fetch_array($result);
-    $patient_name = $row['applicant_name'];
+    $patient_name = ucfirst($row['applicant_name']);
     $relation = $row['relation'];
-    // var_dump($relation);
-    $applicant_name = $row['relative_name'];
+    var_dump($relation);
+    $relative_name = $row['relative_name'];
     // $p_email = $row['EMAIL'];
     // $p_contact_number = $row['CONTACT_NUMBER'];
-    
+
   }
 
 ?>
@@ -142,8 +177,7 @@ function printInvoice($invoice_number)
       <span class="font-weight-bold">Doctor's Address : </span><?php echo $doctor_address; ?><br> -->
       <span class="fs-4 font-weight-normal font-monospace fw-normal lh-lg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         Certified that the following Medicines/Vaccines/Sera/of this therapeutic
-        substances prescribed to Shri. / Smt. <?php echo $patient_name .' '. $relation. ' '. $applicant_name;?> 
-        , the following material used in her treatment, the special nursing provided to
+        substances prescribed to <span class="fs-6 font-weight-bold">Shri./Smt. <?php echo $patient_name . ' ' . $relation . ' ' . $relative_name; ?> </span> MLA/Ex.MLA , the following material used in her treatment, the special nursing provided to
         her the following diagnostic and treatment methods applied in her case during
         aforementioned treatment, were essential for the recovery /for the prevention of serious
         deterioration in her condition and that the medicines do not include therapeutic
@@ -237,7 +271,6 @@ function printInvoice($invoice_number)
                 echo '<td style="text-align: center; vertical-align: middle;">' . $medicine_row['price'] . '</td>'; // Output Price
                 echo '<td rowspan="' . $num_medicines . '"style="text-align: center; vertical-align: middle;">' . $row['total'] . '</td>'; // Output Bill Total
                 echo '</tr>';
-                
               } else {
                 echo '<tr>';
                 echo '<td>' . $medicine_row['medicine_name'] . '</td>'; // Output Medicine Name
@@ -263,7 +296,7 @@ function printInvoice($invoice_number)
       <div style="margin-top: 50px; display: flex; justify-content: space-between; align-items: center;">
         <div style="text-align: left;">
           <p>PLACE : TRIVANDRUM</p>
-          <p>DATE  : <?php echo $current_date; ?> </p>
+          <p>DATE : <?php echo $current_date; ?> </p>
 
         </div>
         <div style="text-align: center;">
