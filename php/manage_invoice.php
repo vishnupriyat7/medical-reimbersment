@@ -97,6 +97,18 @@ function printInvoice($invoice_number)
     // $total_discount = $row['TOTAL_DISCOUNT'];
     // $net_total = $row['NET_TOTAL'];
     // $query = "SELECT * FROM a.id FROM application a"
+   
+
+    $query = "SELECT a.*, rl.* FROM application a JOIN relation rl ON a.id = rl.relation_id";
+    $result = mysqli_query($con, $query);
+    $row = mysqli_fetch_array($result);
+    $patient_name = $row['applicant_name'];
+    $relation = $row['relation'];
+    // var_dump($relation);
+    $applicant_name = $row['relative_name'];
+    // $p_email = $row['EMAIL'];
+    // $p_contact_number = $row['CONTACT_NUMBER'];
+    
   }
 
 ?>
@@ -130,8 +142,8 @@ function printInvoice($invoice_number)
       <span class="font-weight-bold">Doctor's Address : </span><?php echo $doctor_address; ?><br> -->
       <span class="fs-4 font-weight-normal font-monospace fw-normal lh-lg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         Certified that the following Medicines/Vaccines/Sera/of this therapeutic
-        substances prescribed to Smt. P. VASANTHAM w/o Sri. SATHYAN MOKERI
-        Ex.M.L.A., the following material used in her treatment, the special nursing provided to
+        substances prescribed to Shri. / Smt. <?php echo $patient_name .' '. $relation. ' '. $applicant_name;?> 
+        , the following material used in her treatment, the special nursing provided to
         her the following diagnostic and treatment methods applied in her case during
         aforementioned treatment, were essential for the recovery /for the prevention of serious
         deterioration in her condition and that the medicines do not include therapeutic
@@ -196,13 +208,13 @@ function printInvoice($invoice_number)
               FROM application a 
               JOIN bills b ON a.id = b.application_id 
               JOIN (SELECT bill_id, SUM(price) AS total FROM medicines_list GROUP BY bill_id) ml ON b.id = ml.bill_id 
-              WHERE a.id = $invoice_number";
+              WHERE a.id = '$invoice_number'";
           $result = mysqli_query($con, $query);
 
           while ($row = mysqli_fetch_array($result)) {
             // Query to get medicines for the current bill
             $bill_no = $row['bill_no'];
-            $medicines_query = "SELECT m.NAME AS medicine_name, m.GENERIC_NAME AS generic_name, ml.price FROM medicines_list ml JOIN medicines m ON ml.medicine_id = m.id JOIN bills b ON ml.bill_id = b.id WHERE b.bill_no = $bill_no";
+            $medicines_query = "SELECT m.NAME AS medicine_name, m.GENERIC_NAME AS generic_name, ml.price FROM medicines_list ml JOIN medicines m ON ml.medicine_id = m.id JOIN bills b ON ml.bill_id = b.id WHERE b.bill_no = '$bill_no'";
             $medicines_result = mysqli_query($con, $medicines_query);
 
             // Count the number of medicines for rowspan

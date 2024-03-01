@@ -44,6 +44,7 @@ function addNewApplication(doctor_name, applicant_name, relative_name, relation,
                   var applicationNumber = response.application_number;
                   document.getElementById("apl_save_succes").innerHTML = "Application Saved Successfully! Application Number is " + applicationNumber;
                   document.getElementById("apl_save_succes").style.display = "block";
+                  document.getElementById("invoice_button").style.display = "block";
               } else {
                   console.log("Error: " + response.message);
               }

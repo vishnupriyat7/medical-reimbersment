@@ -117,6 +117,11 @@
                     <div class="alert alert-success" role="alert" style="display: none;" id="apl_save_succes">
                      
                     </div>
+                    <div id="invoice_button" class="col col-md-2 form-group float-right" style="display: none;">
+                        <label class="font-weight-bold" for=""></label>
+                        <a href="new_invoice.php"><button class="btn btn-primary form-control font-weight-bold">New Invoice</button></a>
+                    </div>
+                    
 
                     <!-- <div id="new_invoice_button" class="col col-md-2 form-group float-right" style="display: none;">
                         <label class="font-weight-bold" for=""></label>

@@ -58,7 +58,7 @@
                   <th>Date From</th>
                   <th>Date To</th>
                   <!-- <th>Chemical/Pharmacological Name</th> -->
-                  <th>Price Description</th>
+                  <th>Total Amount</th>
                   <!-- <th>Remarks</th> -->
                   <!-- <th>Total Discount</th> -->
                   <th>Action</th>

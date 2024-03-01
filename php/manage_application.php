@@ -148,16 +148,16 @@ function showEditOptionsRow($seq_no, $row)
       <code class="text-danger small font-weight-bold float-right" id="relation_desg_error" style="display: none;"></code>
     </td> -->
     <td>
-      <?php 
-       require "db_connection.php";
-       $relSelQry = "SELECT * FROM relation"; 
+      <?php
+      require "db_connection.php";
+      $relSelQry = "SELECT * FROM relation";
       $relResult = mysqli_query($con, $relSelQry);
       ?>
       <select id="relation_desg" class="form-control" placeholder="Relation / Designation" onblur="notNull(this.value, 'relation_desg_error');">
-      <option value="0">Select</option>
-      <?php while ($relation = mysqli_fetch_array($relResult)) { ?>       
-        <option value="<?= $relation[0]?>" <?php echo $row['relation_id'] == $relation[0] ? 'Selected' : '';  ?>><?= $relation[1] ?></option>
-      <?php } ?>
+        <option value="0">Select</option>
+        <?php while ($relation = mysqli_fetch_array($relResult)) { ?>
+          <option value="<?= $relation[0] ?>" <?php echo $row['relation_id'] == $relation[0] ? 'Selected' : '';  ?>><?= $relation[1] ?></option>
+        <?php } ?>
       </select>
     </td>
     <td>
@@ -196,7 +196,7 @@ function updateApplication($id, $doctor_name, $aplicant_name, $relative_name, $r
   $result = mysqli_query($con, $query);
   // var_dump($result);die;
   // if (!empty($result))
-    showApplictndtls(0);
+  showApplictndtls(0);
 }
 
 function searchApplcn($text, $tag)
