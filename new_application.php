@@ -58,35 +58,8 @@
                     <div class="col col-md-3 form-group">
                         <label class="font-weight-bold" for="doctor_name">Doctor Name :</label>
                         <input id="doctor_name" type="text" class="form-control" name="doctor_name" placeholder="Doctor Name">
-                    </div>
-                    <div class="col col-md-3 form-group">
-                        <label class="font-weight-bold" for="applicant_name">Applicant Name :</label>
-                        <input id="applicant_name" type="text" class="form-control" placeholder="Applicant Name" name="applicant_name">
-                        <!-- <code class="text-danger small font-weight-bold float-right" id="customer_name_error" style="display: none;"></code>
-                        <div id="customer_suggestions" class="list-group position-fixed" style="z-index: 1; width: 18.30%; overflow: auto; max-height: 200px;"></div> -->
-                    </div>
-
-                    <div class="col col-md-3 form-group">
-                        <label class="font-weight-bold" for="relative_name">Relative Name :</label>
-                        <input id="relative_name" type="text" class="form-control" name="relative_name" placeholder="Relative Name">
-                    </div>
-
-                    <div class="col col-md-3 form-group">
-                        <label class="font-weight-bold" for="">Relation / Designation :</label>
-                        <select id="relation_type" class="form-control">
-                            <option value="0">Select</option>
-                            <option value="1">MLA</option>
-                            <option value="2">ExMLA</option>
-                            <option value="3">Spouse/O</option>
-                            <option value="4">S/O</option>
-                            <option value="5">D/O</option>
-
-                        </select>
-                    </div>
-                </div>
-
-                <div class="row col col-md-12">
-
+                    </div>                    
+                    <!-- <div class="row col col-md-12" hidden> -->
                     <div class="col col-md-3 form-group">
                         <label class="font-weight-bold" for="">Date From :</label>
                         <input type="date" class="datepicker form-control hasDatepicker" id="from_date" value='<?php echo date('Y-m-d'); ?>'>
@@ -97,7 +70,46 @@
                         <input type="date" class="datepicker form-control hasDatepicker" id="to_date" value='<?php echo date('Y-m-d'); ?>'>
                         <!-- <code class="text-danger small font-weight-bold float-right" id="date_error" style="display: none;"></code> -->
                     </div>
+                    <!-- </div> -->
+                    <div class="col col-md-3 form-group">
+                        <label class="font-weight-bold" for="">Application Type :</label>
+                        <select id="application_type" class="form-control" onchange="showApplicationForm()">
+                            <option value="0">Select</option>
+                            <option value="S">Self</option>
+                            <option value="D">Dependent</option>
+                        </select>
+                    </div>
                 </div>
+                <div class="row col col-md-12">
+                    <div class="col col-md-3 form-group" id="applicant_div" style="display: none;">
+                        <label class="font-weight-bold" for="applicant_name">Applicant Name :</label>
+                        <input id="applicant_name" type="text" class="form-control" placeholder="Applicant Name" name="applicant_name">
+                        <!-- <code class="text-danger small font-weight-bold float-right" id="customer_name_error" style="display: none;"></code>
+                        <div id="customer_suggestions" class="list-group position-fixed" style="z-index: 1; width: 18.30%; overflow: auto; max-height: 200px;"></div> -->
+                    </div>
+                    <div class="col col-md-3 form-group" id="desig_div" style="display: none;">
+                        <label class="font-weight-bold" for="">Designation :</label>
+                        <select id="relation_type" class="form-control">
+                            <option value="0">Select</option>
+                            <option value="1">MLA</option>
+                            <option value="2">ExMLA</option>
+                        </select>
+                    </div>
+                    <div class="col col-md-3 form-group" id="patient_div" style="display: none;">
+                        <label class="font-weight-bold" for="relative_name">Patient Name :</label>
+                        <input id="relative_name" type="text" class="form-control" name="relative_name" placeholder="Relative Name">
+                    </div>
+                    <div class="col col-md-3 form-group" id="relation_div" style="display: none;">
+                        <label class="font-weight-bold" for="">Relation :</label>
+                        <select id="relation_type" class="form-control">
+                            <option value="0">Select</option>
+                            <option value="3">Spouse/O</option>
+                            <option value="4">S/O</option>
+                            <option value="5">D/O</option>
+                        </select>
+                    </div>
+                </div>
+
                 <!-- Applicant details content end -->
 
                 <div class="col col-md-12">
@@ -115,13 +127,13 @@
                     </div>
 
                     <div class="alert alert-success" role="alert" style="display: none;" id="apl_save_succes">
-                     
+
                     </div>
                     <div id="invoice_button" class="col col-md-2 form-group float-right" style="display: none;">
                         <label class="font-weight-bold" for=""></label>
                         <a href="new_invoice.php"><button class="btn btn-primary form-control font-weight-bold">New Invoice</button></a>
                     </div>
-                    
+
 
                     <!-- <div id="new_invoice_button" class="col col-md-2 form-group float-right" style="display: none;">
                         <label class="font-weight-bold" for=""></label>

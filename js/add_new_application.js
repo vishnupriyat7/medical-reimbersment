@@ -57,3 +57,23 @@ function addNewApplication(doctor_name, applicant_name, relative_name, relation,
   xhttp.send();
 }
 
+function showApplicationForm() {
+  var application_type = document.getElementById('application_type');
+  if(application_type.value == 'S') {
+    document.getElementById("applicant_div").style.display = "block";
+    document.getElementById("desig_div").style.display = "block";
+    document.getElementById("patient_div").style.display = "none";
+    document.getElementById("relation_div").style.display = "none";
+  } else if(application_type.value == 'D'){
+    document.getElementById("applicant_div").style.display = "block";
+    document.getElementById("desig_div").style.display = "block";
+    document.getElementById("patient_div").style.display = "block";
+    document.getElementById("relation_div").style.display = "block";
+  } else {
+    document.getElementById("applicant_div").style.display = "none";
+    document.getElementById("desig_div").style.display = "none";
+    document.getElementById("patient_div").style.display = "none";
+    document.getElementById("relation_div").style.display = "none";
+  }
+  // alert(application_type.value);
+}
