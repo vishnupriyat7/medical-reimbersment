@@ -39,6 +39,7 @@
                     <input type="text" class="form-control" id="by_applno" placeholder="By Application Number" onkeyup="searchApplcn(this.value, 'applno');">
                     &emsp;<input type="text" class="form-control" id="by_applcnt_name" placeholder="By Applicant Name" onkeyup="searchApplcn(this.value, 'applcnt_name');">
                     <!-- &emsp;<input type="text" class="form-control" id="by_suppliers_name" placeholder="By doct" onkeyup="searchMedicine(this.value, 'suppliers_name');"> -->
+                    &emsp;<button class="btn btn-success font-weight-bold" onclick="refresh();"><i class="fa fa-refresh"></i></button>
                 </div>
 
                 <div class="col col-md-12">

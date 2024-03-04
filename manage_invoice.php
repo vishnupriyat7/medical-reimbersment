@@ -33,14 +33,14 @@
       <!-- form content -->
       <div class="row">
 
-        <!-- <div class="col-md-12 form-group form-inline">
+        <div class="col-md-12 form-group form-inline">
           <label class="font-weight-bold" for="">Search :&emsp;</label>
-          <input type="number" class="form-control" id="by_invoice_number" placeholder="By Invoice Nuber" onkeyup="searchInvoice(this.value, 'INVOICE_ID');">
-          &emsp;<input type="text" class="form-control" id="by_customer_name" placeholder="By Customer Name" onkeyup="searchInvoice(this.value, 'NAME');">
-          &emsp;<label class="font-weight-bold" for="">By Invoice Date :&emsp;</label>
-          <input type="date" class="form-control" id="by_date" onchange="searchInvoice(this.value, 'INVOICE_DATE');">
+          <input type="number" class="form-control" id="by_appl_number" placeholder="By Application Number" onkeyup="searchInvoice(this.value, 'id');">
+          &emsp;<input type="text" class="form-control" id="by_applcnt_name" placeholder="By Applicant Name" onkeyup="searchInvoice(this.value, 'applicant_name');">
+          <!-- &emsp;<label class="font-weight-bold" for="">By Invoice Date :&emsp;</label> -->
+          <!-- <input type="date" class="form-control" id="by_date" onchange="searchInvoice(this.value, 'INVOICE_DATE');"> -->
           &emsp;<button class="btn btn-success font-weight-bold" onclick="refresh();"><i class="fa fa-refresh"></i></button>
-        </div> -->
+        </div>
 
         <div class="col col-md-12">
           <hr class="col-md-12" style="padding: 0px; border-top: 2px solid  #02b6ff;">
