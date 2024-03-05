@@ -49,7 +49,7 @@ function printInvoice(invoice_number) {
   xhttp.open("GET", "php/invoice_report.php?action=print_invoice&invoice_number=" + invoice_number, false);
   xhttp.send();
   var print_window = window.open('','','width=1000,height=600');
-  var is_chrome = Boolean(print_window.chrome);
+  // var is_chrome = Boolean(print_window.chrome);
   print_window.document.write(print_content);
 
   // if (is_chrome) {
