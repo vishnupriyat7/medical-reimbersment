@@ -87,7 +87,7 @@
                 <div class="row col col-md-12">
                     <div class="col col-md-6 form-group" id="patient_div" style="display: none;">
                         <label class="font-weight-bold" for="relative_name">Patient Name :</label>
-                        <input id="relative_name" type="text" class="form-control" name="relative_name" placeholder="Relative Name">
+                        <input id="patient_name" type="text" class="form-control" name="patient_name" placeholder="Patient Name">
                     </div>                    
                 </div>
                 <div class="row col col-md-12">
