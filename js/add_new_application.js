@@ -1,18 +1,21 @@
 function addApplicant() {
   var doctor_name = document.getElementById("doctor_name");
   var applicant_name = document.getElementById("applicant_name");
-  var relative_name = document.getElementById("relative_name");
-  var relation = document.getElementById("relation_type");
+  var patient_name = document.getElementById("patient_name");
+  var application_type = document.getElementById("application_type");
   var date_from = document.getElementById("from_date");
   var date_to = document.getElementById("to_date");
+  var designation = document.getElementById("designation");
+
 
   //alert(invoice_number.value);
 
   addNewApplication(
     doctor_name.value,
     applicant_name.value,
-    relative_name.value,
-    relation.value,
+    patient_name.value,
+    application_type.value,
+    designation.value,
     date_from.value,
     date_to.value
   );
@@ -33,14 +36,7 @@ function addApplicant() {
 //   xhttp.send();
 // }
 
-function addNewApplication(
-  doctor_name,
-  applicant_name,
-  relative_name,
-  relation,
-  date_from,
-  date_to
-) {
+function addNewApplication(doctor_name, applicant_name, patient_name, application_type, designation, date_from, date_to) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (xhttp.readyState == 4) {
@@ -61,21 +57,15 @@ function addNewApplication(
       }
     }
   };
-  xhttp.open(
-    "GET",
-    "php/add_new_application.php?action=add_new_application&doctor_name=" +
-      doctor_name +
-      "&applicant_name=" +
-      applicant_name +
-      "&relative_name=" +
-      relative_name +
-      "&relation=" +
-      relation +
-      "&date_from=" +
-      date_from +
-      "&date_to=" +
-      date_to,
-    true
-  );
+  xhttp.open("GET", "php/add_new_application.php?action=add_new_application&doctor_name=" + doctor_name + "&applicant_name=" + applicant_name + "&patient_name=" + patient_name + "&application_type=" + application_type + "&date_from=" + date_from + "&date_to=" + date_to + "&designation=" + designation, true);
   xhttp.send();
+}
+
+function showPatient() {
+  var application_type = document.getElementById('application_type');
+  if (application_type.value == '6') {
+    document.getElementById("patient_div").style.display = "none";
+  } else {
+    document.getElementById("patient_div").style.display = "block";
+  }
 }
