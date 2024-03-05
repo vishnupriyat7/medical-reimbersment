@@ -85,9 +85,9 @@ function showInvoiceRow($seq_no, $row)
       <!-- <button class="btn btn-warning btn-sm" onclick="printInvoice(<?php echo $row['id']; ?>);">
         <i class="fa fa-fax"></i>
       </button> -->
-      <button href="" class="btn btn-info btn-sm" onclick="editInvoice(<?php echo $row['id']; ?>);">
+      <!-- <button href="" class="btn btn-info btn-sm" onclick="editInvoice(<?php echo $row['id']; ?>);">
         <i class="fa fa-pencil"></i>
-      </button>
+      </button> -->
       <button class="btn btn-danger btn-sm" onclick="deleteInvoice(<?php echo $row['id']; ?>);">
         <i class="fa fa-trash"></i>
       </button>
