@@ -69,3 +69,19 @@ function printInvoice(invoice_number) {
   // }
   return true;
 }
+function editInvoice(invoiceId) {
+  $.ajax({
+    url: 'php/fetch_invoice_details.php',
+    type: 'GET',
+    data: { id: invoiceId },
+    success: function(response) {
+      $('#editInvoiceModalBody').html(response);
+      $('#editInvoiceModal').modal('show');
+    },
+    error: function(xhr, status, error) {
+      console.error(xhr.responseText);
+      // Handle error
+    }
+  });
+}
+

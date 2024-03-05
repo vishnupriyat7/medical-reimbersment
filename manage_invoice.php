@@ -84,6 +84,29 @@
 
       </div>
       <!-- form content end -->
+
+
+      <!-- Modal content start -->
+      <div class="modal fade" id="editInvoiceModal" tabindex="-1" role="dialog" aria-labelledby="editInvoiceModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editInvoiceModalLabel">Edit Invoice</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="editInvoiceModalBody">
+              <!-- Invoice details will be loaded here via AJAX -->
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="saveChangesBtn">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal content End -->
       <hr style="border-top: 2px solid #ff5252;">
     </div>
   </div>

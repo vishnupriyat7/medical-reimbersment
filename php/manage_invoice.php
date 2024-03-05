@@ -1,3 +1,4 @@
+
 <?php
 if (isset($_GET["action"]) && $_GET["action"] == "delete") {
   require "db_connection.php";
@@ -67,6 +68,7 @@ function showInvoices()
     }
   }
 }
+
 
 function showInvoiceRow($seq_no, $row)
 {
