@@ -6,13 +6,7 @@ if (isset($_GET['action']) && $_GET['action'] == "add_new_application")
 
 function addNewApplication()
 {
-    //   $customer_id = getCustomerId(strtoupper($_GET['customers_name']), $_GET['customers_contact_number']);
-    //   $invoice_date = $_GET['invoice_date'];
-    //      $payment_status = ($_GET['payment_type'] == "");
-    //   $total_amount = $_GET['total_amount'];
-    //   $total_discount = $_GET['total_discount'];
-    //   $net_total = $_GET['net_total'];
-    // $aplctn_id = $_GET['id'];
+
     $doctor_name = $_GET['doctor_name'];
     $applicant_name = $_GET['applicant_name'];
     $relative_name = $_GET['relative_name'];

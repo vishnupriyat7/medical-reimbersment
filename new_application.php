@@ -55,11 +55,46 @@
 
                 <!-- Applicant details content -->
                 <div class="row col col-md-12">
-                    <div class="col col-md-3 form-group">
+                    <div class="col col-md-6 form-group" id="applicant_div">
+                        <label class="font-weight-bold" for="applicant_name">Applicant Name :</label>
+                        <input id="applicant_name" type="text" class="form-control" placeholder="Applicant Name" name="applicant_name">
+                        <!-- <code class="text-danger small font-weight-bold float-right" id="customer_name_error" style="display: none;"></code>
+                        <div id="customer_suggestions" class="list-group position-fixed" style="z-index: 1; width: 18.30%; overflow: auto; max-height: 200px;"></div> -->
+                    </div>
+                    <div class="col col-md-3 form-group" id="desig_div">
+                        <label class="font-weight-bold" for="">Designation :</label>
+                        <select id="designation" class="form-control">
+                            <option value="0">Select</option>
+                            <option value="1">MLA</option>
+                            <option value="2">ExMLA</option>
+                        </select>
+                    </div>
+                    <div class="col col-md-3 form-group">                        
+                    <?php
+                        require "php/db_connection.php";
+                        $relSelQry = "SELECT * FROM relation WHERE relation_id";
+                        $relResult = mysqli_query($con, $relSelQry);
+                        ?>
+                        <label class="font-weight-bold" for="">Application Type :</label>
+                        <select id="application_type" class="form-control" placeholder="Application Type" onchange="showPatient();">
+                            <option value="0">Select</option>
+                            <?php while ($relation = mysqli_fetch_array($relResult)) { ?>
+                                <option value="<?= $relation[0] ?>"><?= $relation[1] ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="row col col-md-12">
+                    <div class="col col-md-6 form-group" id="patient_div" style="display: none;">
+                        <label class="font-weight-bold" for="relative_name">Patient Name :</label>
+                        <input id="relative_name" type="text" class="form-control" name="relative_name" placeholder="Relative Name">
+                    </div>                    
+                </div>
+                <div class="row col col-md-12">
+                    <div class="col col-md-6 form-group">
                         <label class="font-weight-bold" for="doctor_name">Doctor Name :</label>
                         <input id="doctor_name" type="text" class="form-control" name="doctor_name" placeholder="Doctor Name">
-                    </div>                    
-                    <!-- <div class="row col col-md-12" hidden> -->
+                    </div>
                     <div class="col col-md-3 form-group">
                         <label class="font-weight-bold" for="">Date From :</label>
                         <input type="date" class="datepicker form-control hasDatepicker" id="from_date" value='<?php echo date('Y-m-d'); ?>'>
@@ -69,44 +104,6 @@
                         <label class="font-weight-bold" for="">Date To :</label>
                         <input type="date" class="datepicker form-control hasDatepicker" id="to_date" value='<?php echo date('Y-m-d'); ?>'>
                         <!-- <code class="text-danger small font-weight-bold float-right" id="date_error" style="display: none;"></code> -->
-                    </div>
-                    <!-- </div> -->
-                    <div class="col col-md-3 form-group">
-                        <label class="font-weight-bold" for="">Application Type :</label>
-                        <select id="application_type" class="form-control" onchange="showApplicationForm()">
-                            <option value="0">Select</option>
-                            <option value="S">Self</option>
-                            <option value="D">Dependent</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row col col-md-12">
-                    <div class="col col-md-3 form-group" id="applicant_div" style="display: none;">
-                        <label class="font-weight-bold" for="applicant_name">Applicant Name :</label>
-                        <input id="applicant_name" type="text" class="form-control" placeholder="Applicant Name" name="applicant_name">
-                        <!-- <code class="text-danger small font-weight-bold float-right" id="customer_name_error" style="display: none;"></code>
-                        <div id="customer_suggestions" class="list-group position-fixed" style="z-index: 1; width: 18.30%; overflow: auto; max-height: 200px;"></div> -->
-                    </div>
-                    <div class="col col-md-3 form-group" id="desig_div" style="display: none;">
-                        <label class="font-weight-bold" for="">Designation :</label>
-                        <select id="relation_type" class="form-control">
-                            <option value="0">Select</option>
-                            <option value="1">MLA</option>
-                            <option value="2">ExMLA</option>
-                        </select>
-                    </div>
-                    <div class="col col-md-3 form-group" id="patient_div" style="display: none;">
-                        <label class="font-weight-bold" for="relative_name">Patient Name :</label>
-                        <input id="relative_name" type="text" class="form-control" name="relative_name" placeholder="Relative Name">
-                    </div>
-                    <div class="col col-md-3 form-group" id="relation_div" style="display: none;">
-                        <label class="font-weight-bold" for="">Relation :</label>
-                        <select id="relation_type" class="form-control">
-                            <option value="0">Select</option>
-                            <option value="3">Spouse/O</option>
-                            <option value="4">S/O</option>
-                            <option value="5">D/O</option>
-                        </select>
                     </div>
                 </div>
 
