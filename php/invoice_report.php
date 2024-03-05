@@ -139,12 +139,12 @@ function printInvoice($invoice_number)
     $row = mysqli_fetch_array($result);
     
     $realtion_id = $row['relation_desig_id'];
-    $applicant_name = strtoupper($row['applicant_name']);
+    $applicant_name = "Shri./Smt. " . strtoupper($row['applicant_name']);
     if($realtion_id == 6){
       $patient_name = "";
       $relation = "";
     }else{
-      $patient_name =  strtoupper($row['relative_name']);
+      $patient_name = "Shri./Smt. " . strtoupper($row['relative_name']);
       $relation = $row['relation'];
     }
     
@@ -193,7 +193,7 @@ function printInvoice($invoice_number)
       <span class="font-weight-bold">Doctor's Address : </span><?php echo $doctor_address; ?><br> -->
       <span class="fs-4 font-weight-normal font-monospace fw-normal lh-lg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         Certified that the following Medicines/Vaccines/Sera/of this therapeutic
-        substances prescribed to <span class="fs-6 font-weight-bold">Shri./Smt. <?php echo $patient_name . ' , ' . $relation . ' ' . $relative_name. ' '.$applicant_name.' , '.$desig ?>, </span> the following material used in her treatment, the special nursing provided to
+        substances prescribed to <span class="fs-6 font-weight-bold"> <?php echo $patient_name . '   ' . $relation . '  ' . $relative_name. '  '.$applicant_name.' , '.$desig ?>, </span> the following material used in her treatment, the special nursing provided to
         her the following diagnostic and treatment methods applied in her case during
         aforementioned treatment, were essential for the recovery /for the prevention of serious
         deterioration in her condition and that the medicines do not include therapeutic
@@ -260,7 +260,7 @@ function printInvoice($invoice_number)
               JOIN (SELECT bill_id, SUM(price) AS total FROM medicines_list GROUP BY bill_id) ml ON b.id = ml.bill_id 
               WHERE a.id = '$invoice_number'";
           $result = mysqli_query($con, $query);
-
+          $sl_no = 0;
           while ($row = mysqli_fetch_array($result)) {
             // Query to get medicines for the current bill
             $bill_no = $row['bill_no'];
@@ -269,8 +269,9 @@ function printInvoice($invoice_number)
 
             // Count the number of medicines for rowspan
             $num_medicines = mysqli_num_rows($medicines_result);
-            $seq_no = 0; // Reset sequence number for each bill
-
+            $seq_no = 0;
+             // Reset sequence number for each bill
+            $sel_no = ++$sl_no;
 
             // Initialize bill total for each bill
             $bill_total = 0;
@@ -279,7 +280,7 @@ function printInvoice($invoice_number)
             while ($medicine_row = mysqli_fetch_array($medicines_result)) {
               if ($seq_no == 0) {
                 echo '<tr>';
-                echo '<td rowspan="' . $num_medicines . '" style="text-align: center; vertical-align: middle;">' . ++$seq_no . '</td>'; // Increment the sequence number for each bill
+                echo '<td rowspan="' . $num_medicines . '" style="text-align: center; vertical-align: middle;">' . $sel_no . '</td>'; // Increment the sequence number for each bill
                 echo '<td rowspan="' . $num_medicines . '"style="text-align: center; vertical-align: middle;" >' . $row['bill_no'] . '</td>'; // Output Bill No
                 echo '<td rowspan="' . $num_medicines . '"style="text-align: center; vertical-align: middle;">' . $row['bill_date'] . '</td>'; // Output Bill Date
                 echo '<td>' . $medicine_row['medicine_name'] . '</td>'; // Output Medicine Name
