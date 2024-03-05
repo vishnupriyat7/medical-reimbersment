@@ -4,12 +4,12 @@ if (isset($_GET["action"]) && $_GET["action"] == "delete") {
   $invoice_number = $_GET["invoice_number"];
   $selappln = "SELECT * FROM application WHERE id = $invoice_number";
   $selqry = mysqli_query($con, $selappln);
-  if($selqry) {
+  if ($selqry) {
     // Select bills related to the application
     $selbill = "SELECT * FROM bills WHERE application_id = $invoice_number";
     $selbillqry = mysqli_query($con, $selbill);
 
-    if($selbillqry) {
+    if ($selbillqry) {
       // Loop through bills and delete related medicines_list records
       while ($row = mysqli_fetch_assoc($selbillqry)) {
         $bill_id = $row['id']; // Corrected column name
@@ -137,10 +137,26 @@ function printInvoice($invoice_number)
     $query = "SELECT a.*, rl.* FROM application a JOIN relation rl ON a.relation_desig_id = rl.relation_id WHERE a.id = '$invoice_number'";
     $result = mysqli_query($con, $query);
     $row = mysqli_fetch_array($result);
-    $patient_name = ucfirst($row['applicant_name']);
-    $relation = $row['relation'];
+    
+    $realtion_id = $row['relation_desig_id'];
+    $applicant_name = strtoupper($row['applicant_name']);
+    if($realtion_id == 6){
+      $patient_name = "";
+      $relation = "";
+    }else{
+      $patient_name =  strtoupper($row['relative_name']);
+      $relation = $row['relation'];
+    }
+    
+    $designation = $row['designation'];
+    if($designation == '1'){
+      $desig = 'MLA';
+    }else{
+      $desig = 'Ex.MLA';
+    }
+    // $relation = $row['relation'];
     // var_dump($relation);
-    $relative_name = ucfirst($row['relative_name']);
+   
     // $p_email = $row['EMAIL'];
     // $p_contact_number = $row['CONTACT_NUMBER'];
 
@@ -177,7 +193,7 @@ function printInvoice($invoice_number)
       <span class="font-weight-bold">Doctor's Address : </span><?php echo $doctor_address; ?><br> -->
       <span class="fs-4 font-weight-normal font-monospace fw-normal lh-lg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         Certified that the following Medicines/Vaccines/Sera/of this therapeutic
-        substances prescribed to <span class="fs-6 font-weight-bold">Shri./Smt. <?php echo $patient_name . ' , ' . $relation . ' ' . $relative_name; ?> </span> MLA/Ex.MLA , the following material used in her treatment, the special nursing provided to
+        substances prescribed to <span class="fs-6 font-weight-bold">Shri./Smt. <?php echo $patient_name . ' , ' . $relation . ' ' . $relative_name. ' '.$applicant_name.' , '.$desig ?>, </span> the following material used in her treatment, the special nursing provided to
         her the following diagnostic and treatment methods applied in her case during
         aforementioned treatment, were essential for the recovery /for the prevention of serious
         deterioration in her condition and that the medicines do not include therapeutic
@@ -223,7 +239,7 @@ function printInvoice($invoice_number)
       ?>
       <table class="table table-bordered table-striped table-hover" id="purchase_report_div">
         <thead>
-          <tr>
+          <tr style="text-align: center; vertical-align: middle;">
             <th style="width: 5%;">Sl.No</th>
             <th style="width: 10%;">Bill No</th>
             <th style="width: 10%;">Bill Date</th>
