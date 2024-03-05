@@ -72,7 +72,7 @@
                     <div class="col col-md-3 form-group">                        
                     <?php
                         require "php/db_connection.php";
-                        $relSelQry = "SELECT * FROM relation WHERE relation_id";
+                        $relSelQry = "SELECT * FROM relation ORDER BY relation_id DESC";
                         $relResult = mysqli_query($con, $relSelQry);
                         ?>
                         <label class="font-weight-bold" for="">Application Type :</label>
